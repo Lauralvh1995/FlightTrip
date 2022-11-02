@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Documentation\API.txt" />
+    <None Include="Assets\Credits.txt" />
     <None Include="Assets\Documentation\Readme.txt" />
   </ItemGroup>
   <ItemGroup>
