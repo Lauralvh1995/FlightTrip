@@ -115,7 +115,7 @@ public class LevelSegment : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(equation);
+        //Debug.Log(equation);
     }
 
     private void OnDisable()

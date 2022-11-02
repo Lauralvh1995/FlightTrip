@@ -25,6 +25,10 @@ public class MainMenuManager : MonoBehaviour
     public Button btnMultiplicationTables;
     public Button btnDivisionTables;
 
+    //The cursor that is attached to the plane
+    [SerializeField]
+    private GameObject cursor;
+
     ////holder for all UI elements concerning the arithmetic session
     //public GameObject arithmeticSession;
     //public TMP_Text txtEquation;
@@ -69,6 +73,7 @@ public class MainMenuManager : MonoBehaviour
     {
         txtEquation.SetActive(true);
         barekaTopicsMenu.SetActive(false);
+        cursor.SetActive(false);
         gameManager.GetComponent<TempUI>().AdditionTill10 = true;
     }
 
@@ -76,6 +81,7 @@ public class MainMenuManager : MonoBehaviour
     {
         txtEquation.SetActive(true);
         barekaTopicsMenu.SetActive(false);
+        cursor.SetActive(false);
         gameManager.GetComponent<TempUI>().SubtractionTill10 = true;
     }
 
@@ -83,6 +89,7 @@ public class MainMenuManager : MonoBehaviour
     {
         txtEquation.SetActive(true);
         barekaTopicsMenu.SetActive(false);
+        cursor.SetActive(false);
         gameManager.GetComponent<TempUI>().Addition10Till20 = true;
     }
 
@@ -90,6 +97,7 @@ public class MainMenuManager : MonoBehaviour
     {
         txtEquation.SetActive(true);
         barekaTopicsMenu.SetActive(false);
+        cursor.SetActive(false);
         gameManager.GetComponent<TempUI>().Subtraction10Till20 = true;
     }
 
@@ -97,6 +105,7 @@ public class MainMenuManager : MonoBehaviour
     {
         txtEquation.SetActive(true);
         barekaTopicsMenu.SetActive(false);
+        cursor.SetActive(false);
         gameManager.GetComponent<TempUI>().BuildingBlocksTill100 = true;
     }
 
@@ -107,6 +116,7 @@ public class MainMenuManager : MonoBehaviour
         {
             txtEquation.SetActive(true);
             numberSelectionMenu.SetActive(false);
+            cursor.SetActive(false);
             MultiplicationTables multiplicationTables = gameManager.GetComponent<TempUI>().multiplicationTablesSession;
 
             //the script "MultiplicationTables.cs" has a method that will pass along a List of <Integers> that the user selected in the UI
@@ -126,6 +136,7 @@ public class MainMenuManager : MonoBehaviour
         {
             txtEquation.SetActive(true);
             numberSelectionMenu.SetActive(false);
+            cursor.SetActive(false);
             DivisionTables divisionTables = gameManager.GetComponent<TempUI>().divisionTablesSession;
             
             //the script "DivisionTables.cs" has a method that will pass along a List of <Integers> that the user selected in the UI
