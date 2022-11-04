@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
+[Serializable]
 public class Equation : ICloneable
 {
-    
-
-    //public enum BarekaTopic { AdditionTill10, SubtractionTill10, AdditionTill20, SubtractionTill20, BuildingBlocksTill100, MultiplicationTillMax, DivisionTillMax, MultiplicationOfNumber, DivisionOfNumber }
-
     //the firstNumber and secondNumber are calculated together to form the answerNumber
-    public int firstNumber { get; protected set; }
-    public int secondNumber { get; protected set; }
-
+    [SerializeField]
+    public int firstNumber;
+    [SerializeField]
     public Operator op;
+    [SerializeField]
+    public int secondNumber;
 
     public int GivenAnswer { get; set; }
 

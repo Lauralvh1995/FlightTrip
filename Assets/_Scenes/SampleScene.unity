@@ -4679,6 +4679,7 @@ MonoBehaviour:
   session:
     numberOfEquations: 10
     bases: 040000000200000003000000
+    op: 2
 --- !u!1 &1210477864
 GameObject:
   m_ObjectHideFlags: 0

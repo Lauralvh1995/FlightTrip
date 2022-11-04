@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        equationPoints = new List<EquationPoint>();
         InitializeEquations();
     }
     private void Update()
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour
         {
             float pathOffset = track.PathLength / session.NumberOfEquations;
             float currentPathPosition = 0f;
-            for(int i = 0; i<session.NumberOfEquations; i++)
+            for(int i = 0; i < session.NumberOfEquations; i++)
             {
                 currentPathPosition += pathOffset;
                 EquationPoint point = Instantiate(equationPointPrefab, track.EvaluatePosition(currentPathPosition), track.EvaluateOrientation(currentPathPosition));

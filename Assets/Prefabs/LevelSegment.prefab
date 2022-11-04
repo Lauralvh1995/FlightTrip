@@ -48,20 +48,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c35a6d5e88295e4d96107eba26f699e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equation:
+    firstNumber: 0
+    op: 0
+    secondNumber: 0
   rings:
-  - {fileID: 7446303422295381561}
-  - {fileID: 2357696633797665845}
-  - {fileID: 681857079783882343}
-  - {fileID: 3962061446263873162}
+  - {fileID: 6104529387474599818}
+  - {fileID: 1394154596583001478}
+  - {fileID: 4221915494861526996}
+  - {fileID: 368487322070431545}
   areaGroupsList:
   - ringAreas:
-    - m_Center: {x: 2.5, y: 3, z: 0}
+    - m_Center: {x: 1.5, y: 1, z: 0}
       m_Extent: {x: 0, y: 0, z: 0}
-    - m_Center: {x: 2.5, y: -3, z: 0}
+    - m_Center: {x: 1.5, y: -1, z: 0}
       m_Extent: {x: 0, y: 0, z: 0}
-    - m_Center: {x: -2.5, y: 3, z: 0}
+    - m_Center: {x: -1.5, y: 1, z: 0}
       m_Extent: {x: 0, y: 0, z: 0}
-    - m_Center: {x: -2.5, y: -3, z: 0}
+    - m_Center: {x: -1.5, y: -1, z: 0}
       m_Extent: {x: 0, y: 0, z: 0}
 --- !u!1001 &828882857869962294
 PrefabInstance:
@@ -130,11 +134,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ring (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5574025660073426685, guid: deaa9f47b1f9ce44083394245ac4fe2e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: deaa9f47b1f9ce44083394245ac4fe2e, type: 3}
---- !u!114 &3962061446263873162 stripped
+--- !u!114 &368487322070431545 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4430655234077618876, guid: deaa9f47b1f9ce44083394245ac4fe2e,
+  m_CorrespondingSourceObject: {fileID: 1053254989708909327, guid: deaa9f47b1f9ce44083394245ac4fe2e,
     type: 3}
   m_PrefabInstance: {fileID: 828882857869962294}
   m_PrefabAsset: {fileID: 0}
@@ -217,11 +226,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ring (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5574025660073426685, guid: deaa9f47b1f9ce44083394245ac4fe2e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: deaa9f47b1f9ce44083394245ac4fe2e, type: 3}
---- !u!114 &2357696633797665845 stripped
+--- !u!114 &1394154596583001478 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4430655234077618876, guid: deaa9f47b1f9ce44083394245ac4fe2e,
+  m_CorrespondingSourceObject: {fileID: 1053254989708909327, guid: deaa9f47b1f9ce44083394245ac4fe2e,
     type: 3}
   m_PrefabInstance: {fileID: 2145087731578902153}
   m_PrefabAsset: {fileID: 0}
@@ -304,6 +318,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ring (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5574025660073426685, guid: deaa9f47b1f9ce44083394245ac4fe2e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: deaa9f47b1f9ce44083394245ac4fe2e, type: 3}
 --- !u!4 &124846337332198504 stripped
@@ -312,9 +331,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3749994440126729435}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &681857079783882343 stripped
+--- !u!114 &4221915494861526996 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4430655234077618876, guid: deaa9f47b1f9ce44083394245ac4fe2e,
+  m_CorrespondingSourceObject: {fileID: 1053254989708909327, guid: deaa9f47b1f9ce44083394245ac4fe2e,
     type: 3}
   m_PrefabInstance: {fileID: 3749994440126729435}
   m_PrefabAsset: {fileID: 0}
@@ -391,11 +410,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ring
       objectReference: {fileID: 0}
+    - target: {fileID: 5574025660073426685, guid: deaa9f47b1f9ce44083394245ac4fe2e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: deaa9f47b1f9ce44083394245ac4fe2e, type: 3}
---- !u!114 &7446303422295381561 stripped
+--- !u!114 &6104529387474599818 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4430655234077618876, guid: deaa9f47b1f9ce44083394245ac4fe2e,
+  m_CorrespondingSourceObject: {fileID: 1053254989708909327, guid: deaa9f47b1f9ce44083394245ac4fe2e,
     type: 3}
   m_PrefabInstance: {fileID: 6497090037566071941}
   m_PrefabAsset: {fileID: 0}
