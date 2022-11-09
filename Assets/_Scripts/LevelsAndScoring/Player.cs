@@ -13,12 +13,15 @@ public class Player : MonoBehaviour
     Equation currentEquation;
     [SerializeField]
     TextMeshPro equationText;
+    [SerializeField]
+    Transform plane;
+
+    public Transform Plane { get => plane; set => plane = value; }
 
     public void SetPlayerUI(List<Ring> rings, Equation currentEquation)
     {
-        
         this.currentEquation = currentEquation;
-        this.equationText.text = currentEquation.GenerateEquationToString();
+        this.equationText.text = this.currentEquation.GenerateEquationToString();
         for (int i = 0; i < rings.Count; i++)
         {
             this.rings[i].transform.localPosition = rings[i].transform.localPosition;
@@ -47,5 +50,10 @@ public class Player : MonoBehaviour
     public void HideEquation()
     {
         equationText.gameObject.SetActive(false);
+    }
+    public void AddScore(int score)
+    {
+        this.score += score;
+        //set UI stuff
     }
 }

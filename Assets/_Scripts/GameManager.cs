@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour
     }
     public void SetupNextEquation(int index)
     {
+        currentEquationIndex = index;
         player.HideRings();
         player.HideEquation();
         List<EquationPoint> points;
@@ -102,5 +103,9 @@ public class GameManager : MonoBehaviour
     public void ShowEquation()
     {
         player.ShowEquation();
+    }
+    public void IncrementEquationsFinished()
+    {
+        equationsFinished++;
     }
 }
