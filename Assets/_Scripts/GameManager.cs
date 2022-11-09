@@ -6,40 +6,101 @@ using Cinemachine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
+    Player player;
+    [SerializeField]
     CinemachineDollyCart dollyCart;
     [SerializeField]
     List<CinemachineSmoothPath> tracks;
     [SerializeField]
+    CinemachineSmoothPath currentTrack;
+    [SerializeField]
     EquationPoint equationPointPrefab;
     [SerializeField]
-    List<EquationPoint> equationPoints;
+    Dictionary<CinemachineSmoothPath, List<EquationPoint>> equationPoints;
     [SerializeField]
     Session session;
+    [SerializeField]
+    int amountOfSectionsPerTrack = 10;
+    [SerializeField]
+    int currentEquationIndex = 0;
+    [SerializeField]
+    int equationsFinished = 0;
+
+    [SerializeField]
+    float timeToNextWaypoint = 0f;
+    [SerializeField]
+    int timeBetweenRingsAndTurnIn = 2;
 
     private void Start()
     {
-        equationPoints = new List<EquationPoint>();
+        equationPoints = new Dictionary<CinemachineSmoothPath, List<EquationPoint>>();
+        SwitchTrack(tracks[0]);
+        player = FindObjectOfType<Player>();
         InitializeEquations();
     }
     private void Update()
     {
 
     }
+    private void SwitchTrack(CinemachineSmoothPath track)
+    {
+        currentTrack = track;
+        timeToNextWaypoint = currentTrack.PathLength / amountOfSectionsPerTrack / dollyCart.m_Speed;
+    }
     void InitializeEquations()
     {
         //For each track, generate X equation points. X is the amount of equations in the session.
         foreach(CinemachineSmoothPath track in tracks)
         {
-            float pathOffset = track.PathLength / session.NumberOfEquations;
+            List<EquationPoint> tempList = new List<EquationPoint>();
+            float pathOffset = track.PathLength / amountOfSectionsPerTrack;
             float currentPathPosition = 0f;
-            for(int i = 0; i < session.NumberOfEquations; i++)
+            for(int i = 0; i < amountOfSectionsPerTrack; i++)
             {
                 currentPathPosition += pathOffset;
-                EquationPoint point = Instantiate(equationPointPrefab, track.EvaluatePosition(currentPathPosition), track.EvaluateOrientation(currentPathPosition));
+                EquationPoint point = Instantiate(equationPointPrefab, track.EvaluatePositionAtUnit(currentPathPosition, CinemachinePathBase.PositionUnits.Distance),
+                    track.EvaluateOrientationAtUnit(currentPathPosition, CinemachinePathBase.PositionUnits.Distance));
+                
+                point.gameObject.name = currentTrack.name + " Point " + i; 
+                Debug.Log("Created " + point.gameObject.name + " at " + track.EvaluatePositionAtUnit(currentPathPosition, CinemachinePathBase.PositionUnits.Distance));
+                point.gameObject.transform.SetParent(track.transform);
                 //Set Equation
-                point.SetBasesAndGenerateEquation(session.Bases, session.Op);
-                equationPoints.Add(point);
+                tempList.Add(point);
+                //
+                if(i + 1 == amountOfSectionsPerTrack)
+                {
+                    point.NextPointIndex = 0;
+                }
+                else
+                {
+                    point.NextPointIndex = i + 1;
+                }
+                point.OnRingsSetup.AddListener(player.SetPlayerUI);
+                point.setupNext.AddListener(SetupNextEquation);
+
             }
+            equationPoints.Add(track, tempList);
         }
+        SetupNextEquation(0);
+    }
+    public void SetupNextEquation(int index)
+    {
+        player.HideRings();
+        player.HideEquation();
+        List<EquationPoint> points;
+        equationPoints.TryGetValue(currentTrack, out points);
+        Debug.Log("Activating " + points[index].name);
+        points[index].SetBasesAndGenerateEquation(session.Bases, session.Op, player);
+        //Delayed show of new info
+        Invoke("ShowEquation", timeToNextWaypoint - timeBetweenRingsAndTurnIn - session.ThinkingTime);
+        Invoke("ShowRings", timeToNextWaypoint - timeBetweenRingsAndTurnIn);
+    }
+    public void ShowRings()
+    {
+        player.ShowRings();
+    }
+    public void ShowEquation()
+    {
+        player.ShowEquation();
     }
 }

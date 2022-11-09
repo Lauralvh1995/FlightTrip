@@ -23,7 +23,6 @@ public class Equation : ICloneable
         firstNumber = UnityEngine.Random.Range(1, 11);
         secondNumber = bases[randomIndex];
     }
-
     public int GetCorrectAnswer()
     {
         switch (op)

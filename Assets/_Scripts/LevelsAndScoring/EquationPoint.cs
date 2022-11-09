@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EquationPoint : MonoBehaviour
 {
@@ -8,15 +9,22 @@ public class EquationPoint : MonoBehaviour
     Equation equation;
     [SerializeField]
     List<Ring> rings;
+    [SerializeField]
+    Transform ringOrigin;
 
     [SerializeField]
     private List<AreaGroup> areaGroupsList;
+    [SerializeField]
+    private int nextPointIndex;
+    public int NextPointIndex { get => nextPointIndex; set => nextPointIndex = value; }
 
-    public void SetBasesAndGenerateEquation(List<int> bases, Operator op)
+    public UnityEvent<List<Ring>, Equation> OnRingsSetup;
+    public UnityEvent<int> setupNext;
+
+    public void SetBasesAndGenerateEquation(List<int> bases, Operator op, Player player)
     {
         equation.GenerateEquation(bases, op);
         Debug.Log(equation.firstNumber + equation.op + equation.secondNumber);
-
         //Spawn Rings
         SetUpRings();
     }
@@ -52,6 +60,18 @@ public class EquationPoint : MonoBehaviour
                 0);
             availableAreas.RemoveAt(areaIndex);
         }
+        OnRingsSetup.Invoke(rings, equation);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Hit by: " + other.name);
+        setupNext.Invoke(NextPointIndex);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(transform.position, 3f);
     }
 }
 [System.Serializable]
