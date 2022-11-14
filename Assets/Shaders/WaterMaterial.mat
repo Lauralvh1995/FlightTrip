@@ -54,25 +54,25 @@ Material:
     m_Floats:
     - _Depth: 8.4
     - _Distance: 10
-    - _FoamAmount: 3.35
-    - _FoamCutoff: 2.84
-    - _FoamSpeed: 0.01
-    - _HeightFrequency: 0.04
-    - _NormalStrength: 1.68
+    - _FoamAmount: 4.27
+    - _FoamCutoff: 5.11
+    - _FoamSpeed: 0.36
+    - _HeightFrequency: 0.5
+    - _NormalStrength: 3
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RefractionSpeed: 0.075
-    - _RefractionStrength: 0.5
+    - _RefractionSpeed: 0.2
+    - _RefractionStrength: 0.75
     - _Smoothness: 0.09
     - _Strength: 0.29
-    - _WaveAmplitude: 0.05
-    - _WaveSpeed: 9.6
+    - _WaveAmplitude: 0.045
+    - _WaveSpeed: 15
     m_Colors:
     - _DeepWater: {r: 0.28608045, g: 0.33364603, b: 0.5283019, a: 0}
     - _DeepWaterColor: {r: 0.16788891, g: 0.1790101, b: 0.33962262, a: 0.76862746}
     - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
     - _FoamScale: {r: 300, g: 300, b: 0, a: 0}
-    - _RefractionScale: {r: 5, g: 5, b: 0, a: 0}
+    - _RefractionScale: {r: 75, g: 75, b: 0, a: 0}
     - _RefractionSpeed: {r: 0, g: 0, b: 0, a: 0}
     - _ShallowWater: {r: 0.46682093, g: 0.87316024, b: 0.8773585, a: 0}
     - _SurfaceWaterColor: {r: 0.5886792, g: 1, b: 0.9657233, a: 0.29803923}

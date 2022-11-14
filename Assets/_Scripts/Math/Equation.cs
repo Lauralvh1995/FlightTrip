@@ -14,7 +14,7 @@ public class Equation : ICloneable
     [SerializeField]
     public int secondNumber;
 
-    public int GivenAnswer { get; set; }
+    List<int> generatedAnswers;
 
     public void GenerateEquation(List<int> bases, Operator op)
     {
@@ -22,6 +22,42 @@ public class Equation : ICloneable
         int randomIndex = UnityEngine.Random.Range(0, bases.Count);
         firstNumber = UnityEngine.Random.Range(1, 11);
         secondNumber = bases[randomIndex];
+        generatedAnswers = new List<int>();
+        if(firstNumber == 1)
+        {
+            generatedAnswers.Add(2 * secondNumber);
+            generatedAnswers.Add(3 * secondNumber);
+            generatedAnswers.Add(4 * secondNumber);
+            generatedAnswers.Add(5 * secondNumber);
+        }
+        else if (firstNumber == 2)
+        {
+            generatedAnswers.Add(1 * secondNumber);
+            generatedAnswers.Add(3 * secondNumber);
+            generatedAnswers.Add(4 * secondNumber);
+            generatedAnswers.Add(5 * secondNumber);
+        }
+        else if (firstNumber == 9)
+        {
+            generatedAnswers.Add(10 * secondNumber);
+            generatedAnswers.Add(8 * secondNumber);
+            generatedAnswers.Add(7 * secondNumber);
+            generatedAnswers.Add(6 * secondNumber);
+        }
+        else if (firstNumber == 10)
+        {
+            generatedAnswers.Add(9 * secondNumber);
+            generatedAnswers.Add(8 * secondNumber);
+            generatedAnswers.Add(7 * secondNumber);
+            generatedAnswers.Add(6 * secondNumber);
+        }
+        else
+        {
+            generatedAnswers.Add((firstNumber - 2) * secondNumber);
+            generatedAnswers.Add((firstNumber - 1) * secondNumber);
+            generatedAnswers.Add((firstNumber + 2) * secondNumber);
+            generatedAnswers.Add((firstNumber + 1) * secondNumber);
+        }
     }
     public int GetCorrectAnswer()
     {
@@ -55,59 +91,16 @@ public class Equation : ICloneable
 
     public int GetSimilarAnswer()
     {
-        //first get the correct answer
-        int correctAnswer = GetCorrectAnswer();
-
-        //the correct answer will be incremented/decremented with its table number multiplied by 1 or 2
-        int randomMultipliedValue = UnityEngine.Random.Range(1, 3);
-
-        //the fake answer cannot go above tables of 10, unless the firstNumber is above 10
-        int maxFakeAnswer = 0;
-        if (firstNumber <= 10)
+        int similar = generatedAnswers[UnityEngine.Random.Range(0, generatedAnswers.Count)];
+        foreach (int i in new List<int>(generatedAnswers))
         {
-            maxFakeAnswer = firstNumber * 10;
-        }
-        else
-        {
-            maxFakeAnswer = firstNumber * firstNumber;
-        }
-
-        //the fake answer is not allowed to go above tables of 10
-        if (correctAnswer + (firstNumber * randomMultipliedValue) > maxFakeAnswer)
-        {
-            return correctAnswer - firstNumber * randomMultipliedValue;
-        }
-        //the fake answer is not allowed to go below or equal to 0
-        else if (correctAnswer - (firstNumber * randomMultipliedValue) <= 0)
-        {
-            return correctAnswer + (firstNumber * randomMultipliedValue);
-        }
-        //50% chance to increment or decrement the correct answer with the table number multiplied by 1 or 2, return fake table answer
-        else
-        {
-            if (UnityEngine.Random.value < 0.5f)
+            if (similar == i)
             {
-                return correctAnswer + (firstNumber * randomMultipliedValue);
-            }
-            else
-            {
-                return correctAnswer - (firstNumber * randomMultipliedValue);
+                generatedAnswers.Remove(similar);
             }
         }
+        return similar;
     }
-
-    public bool isCorrect()
-    {
-        if(GivenAnswer == GetCorrectAnswer())
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
     public string GenerateEquationToString()
     {
         switch (op)

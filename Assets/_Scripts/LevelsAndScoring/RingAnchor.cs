@@ -5,14 +5,14 @@ using UnityEngine;
 public class RingAnchor : MonoBehaviour
 {
     [SerializeField]
-    Vector2 bounds;
+    Bounds bounds;
     [SerializeField]
     Ring ring;
     public Ring Ring { get => ring; set => ring = value; }
-    public Vector2 Bounds { get => bounds; set => bounds = value; }
+    public Bounds Bounds { get => bounds; set => bounds = value; }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawCube(transform.position, new Vector3(bounds.x*2, bounds.y*2, 0f));
+        Gizmos.DrawCube(transform.position, new Vector3(bounds.max.x*2, bounds.max.y*2, 0f));
     }
 }

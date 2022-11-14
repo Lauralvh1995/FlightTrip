@@ -75,9 +75,7 @@ public class GameManager : MonoBehaviour
                 {
                     point.NextPointIndex = i + 1;
                 }
-                point.OnRingsSetup.AddListener(player.SetPlayerUI);
                 point.setupNext.AddListener(SetupNextEquation);
-
             }
             equationPoints.Add(track, tempList);
         }
