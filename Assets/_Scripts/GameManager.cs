@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Player player;
     [SerializeField]
+    bool gameHasEnded = false;
+    [SerializeField]
     CinemachineDollyCart dollyCart;
     [SerializeField]
     List<CinemachineSmoothPath> tracks;
@@ -81,6 +83,7 @@ public class GameManager : MonoBehaviour
                     point.NextPointIndex = i + 1;
                 }
                 point.setupNext.AddListener(SetupNextEquation);
+                point.equationFinished.AddListener(IncrementEquationsFinished);
             }
             equationPoints.Add(track, tempList);
         }
@@ -88,16 +91,19 @@ public class GameManager : MonoBehaviour
     }
     public void SetupNextEquation(int index)
     {
-        currentEquationIndex = index;
-        player.HideRings();
-        player.HideEquation();
-        List<EquationPoint> points;
-        equationPoints.TryGetValue(currentTrack, out points);
-        Debug.Log("Activating " + points[index].name);
-        points[index].SetBasesAndGenerateEquation(session.Bases, session.Op, player);
-        //Delayed show of new info
-        Invoke("ShowEquation", timeToNextWaypoint - timeBetweenRingsAndTurnIn - session.ThinkingTime);
-        Invoke("ShowRings", timeToNextWaypoint - timeBetweenRingsAndTurnIn);
+        if (!gameHasEnded)
+        {
+            currentEquationIndex = index;
+            player.HideRings();
+            player.HideEquation();
+            List<EquationPoint> points;
+            equationPoints.TryGetValue(currentTrack, out points);
+            Debug.Log("Activating " + points[index].name);
+            points[index].SetBasesAndGenerateEquation(session.Bases, session.Op, player);
+            //Delayed show of new info
+            Invoke("ShowEquation", timeToNextWaypoint - timeBetweenRingsAndTurnIn - session.ThinkingTime);
+            Invoke("ShowRings", timeToNextWaypoint - timeBetweenRingsAndTurnIn);
+        }
     }
     public void ShowRings()
     {
@@ -112,7 +118,7 @@ public class GameManager : MonoBehaviour
         equationsFinished++;
         if (session.NumberOfEquations != 0)
         {
-            if (equationsFinished > session.NumberOfEquations)
+            if (equationsFinished >= session.NumberOfEquations)
             {
                 EndGame();
             }
@@ -122,6 +128,7 @@ public class GameManager : MonoBehaviour
     private void EndGame()
     {
         dollyCart.m_Speed = 0;
+        gameHasEnded = true;
         gameEnded.Invoke();
     }
 }

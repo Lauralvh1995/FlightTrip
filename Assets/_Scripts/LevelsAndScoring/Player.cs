@@ -66,6 +66,8 @@ public class Player : MonoBehaviour
 
     public void EndGame()
     {
+        HideRings();
+        HideEquation();
         passScore.Invoke(score);
     }
 }

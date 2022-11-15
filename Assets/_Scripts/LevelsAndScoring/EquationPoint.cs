@@ -21,6 +21,7 @@ public class EquationPoint : MonoBehaviour
     public UnityEvent<List<Ring>, Equation> onRingsSetup;
     public UnityEvent<int> setupNext;
     public UnityEvent<int> sendScore;
+    public UnityEvent equationFinished;
 
     private void OnEnable()
     {
@@ -36,6 +37,7 @@ public class EquationPoint : MonoBehaviour
         sendScore.RemoveListener(player.AddScore);
         onRingsSetup.RemoveListener(player.SetPlayerUI);
         setupNext.RemoveAllListeners();
+        equationFinished.RemoveAllListeners();
     }
 
     public void SetBasesAndGenerateEquation(List<int> bases, Operator op, Player player)
@@ -108,10 +110,12 @@ public class EquationPoint : MonoBehaviour
         {
             Debug.Log("Incorrect answer entered. The correct answer was " + correctAnswer);
             //Incorrect
-        }        
+        }
         //Send the signal for the next point to generate a question
+        equationFinished.Invoke();
         setupNext.Invoke(NextPointIndex);
         sendScore.Invoke(score);
+
         //TODO: do some thing with track selection stuff
         //TODO: save the score breakdown somewhere
     }
