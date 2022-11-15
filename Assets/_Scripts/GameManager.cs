@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.Events;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,6 +32,9 @@ public class GameManager : MonoBehaviour
     float timeToNextWaypoint = 0f;
     [SerializeField]
     int timeBetweenRingsAndTurnIn = 2;
+
+    [SerializeField]
+    UnityEvent gameEnded;
 
     private void Start()
     {
@@ -105,5 +110,18 @@ public class GameManager : MonoBehaviour
     public void IncrementEquationsFinished()
     {
         equationsFinished++;
+        if (session.NumberOfEquations != 0)
+        {
+            if (equationsFinished > session.NumberOfEquations)
+            {
+                EndGame();
+            }
+        }
+    }
+
+    private void EndGame()
+    {
+        dollyCart.m_Speed = 0;
+        gameEnded.Invoke();
     }
 }

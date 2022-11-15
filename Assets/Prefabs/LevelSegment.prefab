@@ -48,6 +48,7 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 3, y: 2, z: 0}
   ring: {fileID: 1702199560387881378}
+  verticalExtents: 1.5
 --- !u!1 &2169332733144261273
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,6 +97,7 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 3, y: 2, z: 0}
   ring: {fileID: 9173887582668367178}
+  verticalExtents: 1.5
 --- !u!1 &4801149940073301883
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,6 +237,7 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 3, y: 2, z: 0}
   ring: {fileID: 4241293473942510170}
+  verticalExtents: 1.5
 --- !u!1 &8080319271919846581
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,6 +286,7 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 3, y: 2, z: 0}
   ring: {fileID: 1423569377167053295}
+  verticalExtents: 1.5
 --- !u!1001 &1802148685543322285
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
@@ -15,6 +16,11 @@ public class Player : MonoBehaviour
     TextMeshPro equationText;
     [SerializeField]
     Transform plane;
+
+    [SerializeField]
+    TextMeshProUGUI scoreUI;
+    [SerializeField]
+    UnityEvent<int> passScore;
 
     public Transform Plane { get => plane; set => plane = value; }
 
@@ -55,5 +61,11 @@ public class Player : MonoBehaviour
     {
         this.score += score;
         //set UI stuff
+        scoreUI.text = "SCORE " + this.score;
+    }
+
+    public void EndGame()
+    {
+        passScore.Invoke(score);
     }
 }
