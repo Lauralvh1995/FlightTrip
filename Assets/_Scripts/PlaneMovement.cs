@@ -13,6 +13,7 @@ public class PlaneMovement : MonoBehaviour
 
     [SerializeField]
     private float verticalBounds = 3f;
+    //TODO: figure out a way to make this value adaptive too
     [SerializeField]
     private float horizontalBounds;
 

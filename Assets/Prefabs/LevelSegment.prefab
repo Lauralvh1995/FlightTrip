@@ -165,7 +165,7 @@ MonoBehaviour:
   - {fileID: 4341707823685765986}
   - {fileID: 9177545619660120431}
   nextPointIndex: 0
-  OnRingsSetup:
+  onRingsSetup:
     m_PersistentCalls:
       m_Calls: []
   setupNext:
@@ -355,7 +355,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6939663156339061827, guid: deaa9f47b1f9ce44083394245ac4fe2e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: deaa9f47b1f9ce44083394245ac4fe2e, type: 3}
 --- !u!114 &1702199560387881378 stripped
 MonoBehaviour:
@@ -447,7 +448,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6939663156339061827, guid: deaa9f47b1f9ce44083394245ac4fe2e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: deaa9f47b1f9ce44083394245ac4fe2e, type: 3}
 --- !u!114 &1423569377167053295 stripped
 MonoBehaviour:
@@ -539,7 +541,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6939663156339061827, guid: deaa9f47b1f9ce44083394245ac4fe2e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: deaa9f47b1f9ce44083394245ac4fe2e, type: 3}
 --- !u!4 &139843733515891174 stripped
 Transform:
@@ -631,7 +634,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6939663156339061827, guid: deaa9f47b1f9ce44083394245ac4fe2e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: deaa9f47b1f9ce44083394245ac4fe2e, type: 3}
 --- !u!4 &4935093025602883318 stripped
 Transform:
