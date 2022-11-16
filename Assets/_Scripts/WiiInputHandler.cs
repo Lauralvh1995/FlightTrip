@@ -31,7 +31,7 @@ public class WiiInputHandler : MonoBehaviour
             canInvokeClick = true;
             currentTime = 0;
         }
-        Vector2 input = Wii.GetCenterOfBalance(0);
+        Vector2 input = Wii.GetCenterOfBalance(0); //Change this if you want a different source of COG input than WiiBuddy
         previousCOM = currentCOM;
         currentCOM = Vector2.Lerp(currentCOM, input, 0.5f * Time.deltaTime);
         OnInputUpdate.Invoke(currentCOM);
