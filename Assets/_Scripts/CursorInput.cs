@@ -11,41 +11,35 @@ public class CursorInput : MonoBehaviour
     [SerializeField]
     private bool allowedToClick= false;
     [SerializeField]
-    private Camera uiCamera;
-    [SerializeField]
     private LayerMask uiMask;
 
-    [SerializeField] GraphicRaycaster raycaster;
+    //[SerializeField] GraphicRaycaster raycaster;
     PointerEventData pointerEventData;
     [SerializeField] EventSystem eventSystem;
     [SerializeField] RectTransform rectTransform;
 
-
-    [SerializeField] 
-    Button toBeClicked;
-
     private void Awake()
     {
         eventSystem = FindObjectOfType<EventSystem>();
-        raycaster = GetComponentInParent<GraphicRaycaster>();
+        //raycaster = GetComponentInParent<GraphicRaycaster>();
         rectTransform = GetComponent<RectTransform>();
-        uiCamera = Camera.main;
     }
 
     private void Update()
     {
         if (allowedToClick)
         {
+            //get the position of the cursor
             Vector3 screenPos = rectTransform.position;
             //Set up the new Pointer Event
             pointerEventData = new PointerEventData(eventSystem);
-            //Set the Pointer Event Position to that of the game object
+            //Set the Pointer Event Position to that of the cursor
             pointerEventData.position = screenPos;
 
             //Create a list of Raycast Results
             List<RaycastResult> results = new List<RaycastResult>();
 
-            //Raycast using the Graphics Raycaster and mouse click position
+            //Raycast using the Graphics Raycaster and simulated mouse click position
             EventSystem.current.RaycastAll(pointerEventData, results);
 
             if (results.Count > 0) Debug.Log("Hit " + results[0].gameObject.name);
@@ -54,12 +48,12 @@ public class CursorInput : MonoBehaviour
                 if (result.gameObject?.GetComponent<Button>())
                 {
                     Button button = result.gameObject.GetComponent<Button>();
-                    button.onClick.Invoke();
                     allowedToClick = false;
+                    clickCounter = 0;
+                    //actually click
+                    button.onClick.Invoke();
                 }
             }
-            //check if plane is overlapping a button
-            //if input handler gives OK for input, call click
         }
     }
     public void UpdateClick(bool status)
