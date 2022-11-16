@@ -13921,7 +13921,7 @@ RectTransform:
   m_GameObject: {fileID: 763703946405319776}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.38128, y: 0.38128, z: 0.38128}
+  m_LocalScale: {x: 0.24999999, y: 0.24999999, z: 0.24999999}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 124846338396011955}
@@ -13930,7 +13930,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 5, y: 5}
+  m_SizeDelta: {x: 7, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &1198230644925004385
 MeshRenderer:
@@ -19075,7 +19075,7 @@ RectTransform:
   m_GameObject: {fileID: 2546628700207779378}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.38128, y: 0.38128, z: 0.38128}
+  m_LocalScale: {x: 0.24999999, y: 0.24999999, z: 0.24999999}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2915450649944827873}
@@ -19084,7 +19084,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 5, y: 5}
+  m_SizeDelta: {x: 7, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &2636835217057696081
 MeshRenderer:
@@ -28622,7 +28622,7 @@ RectTransform:
   m_GameObject: {fileID: 3824497485066531981}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.38128, y: 0.38128, z: 0.38128}
+  m_LocalScale: {x: 0.24999999, y: 0.24999999, z: 0.24999999}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4481622138743446878}
@@ -28631,7 +28631,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 5, y: 5}
+  m_SizeDelta: {x: 7, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &3652141703684353180
 Transform:
@@ -29599,7 +29599,7 @@ RectTransform:
   m_GameObject: {fileID: 7258074532192648254}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.38128, y: 0.38128, z: 0.38128}
+  m_LocalScale: {x: 0.24999999, y: 0.24999999, z: 0.24999999}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8042144641286493677}
@@ -29608,7 +29608,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 5, y: 5}
+  m_SizeDelta: {x: 7, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!33 &7234848726879962823
 MeshFilter:
