@@ -11,8 +11,6 @@ public class CursorInput : MonoBehaviour
     [SerializeField]
     private bool allowedToClick= false;
     [SerializeField]
-    private Transform planeTransform;
-    [SerializeField]
     private Camera uiCamera;
     [SerializeField]
     private LayerMask uiMask;
@@ -29,13 +27,14 @@ public class CursorInput : MonoBehaviour
     {
         eventSystem = FindObjectOfType<EventSystem>();
         raycaster = GetComponentInParent<GraphicRaycaster>();
+        uiCamera = Camera.main;
     }
 
     private void Update()
     {
         if (allowedToClick)
         {
-            Vector3 screenPos = uiCamera.WorldToScreenPoint(planeTransform.position);
+            Vector3 screenPos = uiCamera.WorldToScreenPoint(transform.position);
             //Set up the new Pointer Event
             pointerEventData = new PointerEventData(eventSystem);
             //Set the Pointer Event Position to that of the game object
@@ -57,7 +56,6 @@ public class CursorInput : MonoBehaviour
                     allowedToClick = false;
                 }
             }
-
             //check if plane is overlapping a button
             //if input handler gives OK for input, call click
         }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndGameText : MonoBehaviour
 {
@@ -11,7 +12,12 @@ public class EndGameText : MonoBehaviour
     TextMeshProUGUI totalScoreText;
     public void GameEnded(int score)
     {
-        totalScoreText.text = "Total Score \n \n" + score;
+        totalScoreText.text = "Eindscore \n \n" + score;
         gameOverText.gameObject.SetActive(true);
+    }
+
+    public void BackToTitleScreen()
+    {
+        SceneManager.LoadScene("TitleScreen");
     }
 }

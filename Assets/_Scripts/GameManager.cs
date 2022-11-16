@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        session = DataSaver.loadData<Session>("sessionInfo");
         equationPoints = new Dictionary<CinemachineSmoothPath, List<EquationPoint>>();
         SwitchTrack(tracks[0]);
         player = FindObjectOfType<Player>();
