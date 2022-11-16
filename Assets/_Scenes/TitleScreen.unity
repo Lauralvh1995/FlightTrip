@@ -3308,7 +3308,7 @@ RectTransform:
   - {fileID: 364385207}
   - {fileID: 1340179536}
   m_Father: {fileID: 1182671169}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -3649,7 +3649,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 996543023}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 993624475}
+        m_TargetAssemblyTypeName: GameSetup, Assembly-CSharp
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &996543023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4144,8 +4156,8 @@ RectTransform:
   - {fileID: 1785724004}
   - {fileID: 784178990}
   - {fileID: 996543021}
-  - {fileID: 1819161461}
   - {fileID: 968865405}
+  - {fileID: 1819161461}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6171,7 +6183,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1182671169}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6231,9 +6243,10 @@ MonoBehaviour:
   screenAspect: 0
   speedMultiplier: 100
   invertYAxis: 0
-  verticalBounds: 300
+  verticalBounds: 500
   horizontalBounds: 0
-  rectTransform: {fileID: 0}
+  rectTransform: {fileID: 1819161461}
+  parentCanvas: {fileID: 1182671169}
 --- !u!114 &1819161465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6254,6 +6267,7 @@ MonoBehaviour:
     m_Bits: 32
   raycaster: {fileID: 0}
   eventSystem: {fileID: 0}
+  rectTransform: {fileID: 0}
   toBeClicked: {fileID: 0}
 --- !u!1 &1883961807
 GameObject:

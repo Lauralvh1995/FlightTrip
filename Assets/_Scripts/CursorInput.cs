@@ -18,6 +18,7 @@ public class CursorInput : MonoBehaviour
     [SerializeField] GraphicRaycaster raycaster;
     PointerEventData pointerEventData;
     [SerializeField] EventSystem eventSystem;
+    [SerializeField] RectTransform rectTransform;
 
 
     [SerializeField] 
@@ -27,6 +28,7 @@ public class CursorInput : MonoBehaviour
     {
         eventSystem = FindObjectOfType<EventSystem>();
         raycaster = GetComponentInParent<GraphicRaycaster>();
+        rectTransform = GetComponent<RectTransform>();
         uiCamera = Camera.main;
     }
 
@@ -34,7 +36,7 @@ public class CursorInput : MonoBehaviour
     {
         if (allowedToClick)
         {
-            Vector3 screenPos = uiCamera.WorldToScreenPoint(transform.position);
+            Vector3 screenPos = rectTransform.position;
             //Set up the new Pointer Event
             pointerEventData = new PointerEventData(eventSystem);
             //Set the Pointer Event Position to that of the game object

@@ -18,6 +18,11 @@ public class DifficultySelector : MonoBehaviour
     [SerializeField]
     UnityEvent<Difficulty> OnDifficultySelect;
 
+    private void Awake()
+    {
+        button = GetComponent<Image>();
+    }
+
     public void ButtonClicked()
     {
         if (!selected)
