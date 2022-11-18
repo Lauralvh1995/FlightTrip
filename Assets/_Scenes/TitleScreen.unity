@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 383c64c3f4dba10489745d63cd0c0183,
+    type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -1141,7 +1142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setDifficulty: 1
-  selected: 0
+  selected: 1
   button: {fileID: 0}
   OnDifficultySelect:
     m_PersistentCalls:
@@ -1195,7 +1196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6188,7 +6189,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1819161462
 MonoBehaviour:
@@ -6241,7 +6242,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenAspect: 0
-  speedMultiplier: 100
   invertYAxis: 0
   verticalBounds: 500
   horizontalBounds: 0
@@ -6261,14 +6261,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clickCounter: 0
   allowedToClick: 0
-  uiCamera: {fileID: 0}
   uiMask:
     serializedVersion: 2
     m_Bits: 32
-  raycaster: {fileID: 0}
   eventSystem: {fileID: 0}
   rectTransform: {fileID: 0}
-  toBeClicked: {fileID: 0}
 --- !u!1 &1883961807
 GameObject:
   m_ObjectHideFlags: 0

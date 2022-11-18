@@ -8,6 +8,12 @@ public class GameSetup : MonoBehaviour
     [SerializeField]
     List<int> selectedTables;
 
+    [SerializeField]
+    int thinkingTimeEasy = 6;
+    [SerializeField]
+    int thinkingTimeMedium = 3;
+    [SerializeField]
+    int thinkingTimeHard = 0;
     private int thinkingTime;
 
     private void Awake()
@@ -37,7 +43,7 @@ public class GameSetup : MonoBehaviour
             }
             else
             {
-                Session session = new Session(10, selectedTables, Operator.Multiply, 4);
+                Session session = new Session(10, selectedTables, Operator.Multiply, thinkingTimeMedium);
 
                 DataSaver.saveData(session, "sessionInfo");
                 SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
@@ -54,13 +60,13 @@ public class GameSetup : MonoBehaviour
         switch (difficulty)
         {
             case Difficulty.EASY:
-                thinkingTime = 7;
+                thinkingTime = thinkingTimeEasy;
                 break;
             case Difficulty.NORMAL:
-                thinkingTime = 4;
+                thinkingTime = thinkingTimeMedium;
                 break;
             case Difficulty.HARD:
-                thinkingTime = 1;
+                thinkingTime = thinkingTimeHard;
                 break;
         }
     }
