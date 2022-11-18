@@ -1432,28 +1432,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentCOM: {x: 0, y: 0}
   previousCOM: {x: 0, y: 0}
-  clickTolerance: 0.01
   OnInputUpdate:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1819161464}
         m_TargetAssemblyTypeName: CursorMovement, Assembly-CSharp
         m_MethodName: UpdatePosition
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnAllowClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1819161465}
-        m_TargetAssemblyTypeName: CursorInput, Assembly-CSharp
-        m_MethodName: UpdateClick
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6249,8 +6233,24 @@ MonoBehaviour:
   verticalBounds: 500
   horizontalBounds: 0
   speedModifier: 2
+  clickTolerance: 0.01
   rectTransform: {fileID: 1819161461}
   parentCanvas: {fileID: 1182671169}
+  OnAllowClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1819161465}
+        m_TargetAssemblyTypeName: CursorInput, Assembly-CSharp
+        m_MethodName: UpdateClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1819161465
 MonoBehaviour:
   m_ObjectHideFlags: 0

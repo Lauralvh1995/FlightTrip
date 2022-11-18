@@ -54,7 +54,7 @@ public class EquationPoint : MonoBehaviour
         //Setup each ring position
         for (int i = 0; i < ringAnchors.Count; i++)
         {
-            //ringAnchors[i].Ring = rings[i];
+            ringAnchors[i].Ring = rings[i];
             rings[i].transform.localPosition = new Vector3(
                 Random.Range(ringAnchors[i].transform.localPosition.x + ringAnchors[i].Bounds.min.x + 1f, 
                 ringAnchors[i].transform.localPosition.x + ringAnchors[i].Bounds.max.x - 1f),
@@ -112,10 +112,10 @@ public class EquationPoint : MonoBehaviour
             //Incorrect
         }
         //Send the signal for the next point to generate a question
-        equationFinished.Invoke();
+
         setupNext.Invoke(NextPointIndex);
         sendScore.Invoke(score);
-
+        equationFinished.Invoke();
         //TODO: do some thing with track selection stuff
         //TODO: save the score breakdown somewhere
     }
