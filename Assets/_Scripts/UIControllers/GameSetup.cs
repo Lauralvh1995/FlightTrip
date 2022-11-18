@@ -14,7 +14,7 @@ public class GameSetup : MonoBehaviour
     int thinkingTimeMedium = 3;
     [SerializeField]
     int thinkingTimeHard = 0;
-    private int thinkingTime;
+    private int thinkingTime = -1;
 
     private void Awake()
     {
@@ -34,7 +34,7 @@ public class GameSetup : MonoBehaviour
     {
         if (selectedTables.Count > 0)
         {
-            if (thinkingTime != 0)
+            if (thinkingTime != -1)
             {
                 Session session = new Session(10, selectedTables, Operator.Multiply, thinkingTime);
 

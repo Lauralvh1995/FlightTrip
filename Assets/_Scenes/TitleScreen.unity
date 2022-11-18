@@ -3552,6 +3552,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedTables: 
+  thinkingTimeEasy: 6
+  thinkingTimeMedium: 3
+  thinkingTimeHard: 0
 --- !u!4 &993624476
 Transform:
   m_ObjectHideFlags: 0
@@ -6245,6 +6248,7 @@ MonoBehaviour:
   invertYAxis: 0
   verticalBounds: 500
   horizontalBounds: 0
+  speedModifier: 2
   rectTransform: {fileID: 1819161461}
   parentCanvas: {fileID: 1182671169}
 --- !u!114 &1819161465

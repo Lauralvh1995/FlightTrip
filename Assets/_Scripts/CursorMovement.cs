@@ -12,6 +12,8 @@ public class CursorMovement : MonoBehaviour
     private float verticalBounds = 300f;
     [SerializeField]
     private float horizontalBounds;
+    [SerializeField]
+    private int speedModifier = 2;
 
     [SerializeField]
     RectTransform rectTransform;
@@ -27,7 +29,7 @@ public class CursorMovement : MonoBehaviour
     public void UpdatePosition(Vector2 pos)
     {
         int invert = invertYAxis ? -1 : 1;
-        Vector2 localPos = new Vector3(pos.x * verticalBounds * screenAspect,
+        Vector2 localPos = new Vector3(pos.x * verticalBounds * speedModifier * screenAspect,
             pos.y * horizontalBounds * invert);
 
         rectTransform.anchoredPosition = new Vector3(Mathf.Clamp(localPos.x, -horizontalBounds, horizontalBounds)
