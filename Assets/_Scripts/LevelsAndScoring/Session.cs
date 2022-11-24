@@ -14,6 +14,8 @@ public class Session
     private Operator op;
     [SerializeField]
     private int thinkingTime;
+    [SerializeField]
+    List<ScoreEntry> scoreEntries;
 
     public int NumberOfEquations { get => numberOfEquations; set => numberOfEquations = value; }
     public List<int> Bases { get => bases; set => bases = value; }
@@ -26,5 +28,39 @@ public class Session
         this.bases = bases;
         this.op = op;
         this.thinkingTime = thinkingTime;
+    }
+
+    //Default data the game will load with if there is no data to load
+    public Session()
+    {
+        numberOfEquations = 10;
+        //start with bases 1, 2, 5 and 10
+        bases = new List<int>();
+        bases.Add(1);
+        bases.Add(2);
+        bases.Add(5);
+        bases.Add(10);
+        op = Operator.Multiply;
+        thinkingTime = 4;
+    }
+
+    public void AddEntry(ScoreEntry entry)
+    {
+        scoreEntries.Add(entry);
+    }
+
+    public void AddAccuracyToLatestEntry(float accuracy)
+    {
+        scoreEntries[scoreEntries.Count - 1].SetAccuracy(accuracy);
+    }
+
+    public int GetScore()
+    {
+        int score = 0;
+        foreach(ScoreEntry entry in scoreEntries)
+        {
+            score += entry.GetScore();
+        }
+        return score;
     }
 }

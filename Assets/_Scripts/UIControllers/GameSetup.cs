@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameSetup : MonoBehaviour
+public class GameSetup : MonoBehaviour, IDataPersistence
 {
+    [SerializeField]
+    Player player;
+
     [SerializeField]
     List<int> selectedTables;
 
@@ -36,16 +39,11 @@ public class GameSetup : MonoBehaviour
         {
             if (thinkingTime != -1)
             {
-                Session session = new Session(10, selectedTables, Operator.Multiply, thinkingTime);
-
-                DataSaver.saveData(session, "sessionInfo");
                 SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
             }
             else
             {
-                Session session = new Session(10, selectedTables, Operator.Multiply, thinkingTimeMedium);
-
-                DataSaver.saveData(session, "sessionInfo");
+                thinkingTime = thinkingTimeMedium;
                 SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
             }
         }
@@ -69,6 +67,16 @@ public class GameSetup : MonoBehaviour
                 thinkingTime = thinkingTimeHard;
                 break;
         }
+    }
+
+    public void LoadData(GameData gameData)
+    {
+        this.player.SetPlayerData(gameData);
+    }
+
+    public void SaveData(ref GameData gameData)
+    {
+        gameData.latestSession = new Session(10, selectedTables, Operator.Multiply, thinkingTime);
     }
 }
 

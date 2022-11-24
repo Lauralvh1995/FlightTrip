@@ -7,20 +7,16 @@ using UnityEngine.Events;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    List<Ring> rings;
+    PlayerData playerData;
+
     [SerializeField]
-    int score = 0;
+    List<Ring> rings;
     [SerializeField]
     Equation currentEquation;
     [SerializeField]
     TextMeshPro equationText;
     [SerializeField]
     Transform plane;
-
-    [SerializeField]
-    TextMeshProUGUI scoreUI;
-    [SerializeField]
-    UnityEvent<int> passScore;
 
     public Transform Plane { get => plane; set => plane = value; }
 
@@ -57,17 +53,14 @@ public class Player : MonoBehaviour
     {
         equationText.gameObject.SetActive(false);
     }
-    public void AddScore(int score)
-    {
-        this.score += score;
-        //set UI stuff
-        scoreUI.text = "SCORE " + this.score;
-    }
 
     public void EndGame()
     {
         HideRings();
         HideEquation();
-        passScore.Invoke(score);
+    }
+    public void SetPlayerData(GameData data)
+    {
+        this.playerData = data.playerData;
     }
 }

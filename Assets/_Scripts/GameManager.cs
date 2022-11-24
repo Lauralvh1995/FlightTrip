@@ -5,7 +5,7 @@ using Cinemachine;
 using UnityEngine.Events;
 using System;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IDataPersistence
 {
     [SerializeField]
     Player player;
@@ -37,6 +37,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     UnityEvent gameEnded;
+
+    [SerializeField]
+    UnityEvent<int> updateScore;
 
     private void Start()
     {
@@ -83,8 +86,10 @@ public class GameManager : MonoBehaviour
                 {
                     point.NextPointIndex = i + 1;
                 }
+                point.onScore.AddListener(AddScoreEntry);
                 point.setupNext.AddListener(SetupNextEquation);
                 point.equationFinished.AddListener(IncrementEquationsFinished);
+
             }
             equationPoints.Add(track, tempList);
         }
@@ -121,15 +126,36 @@ public class GameManager : MonoBehaviour
         {
             if (equationsFinished >= session.NumberOfEquations)
             {
+                gameHasEnded = true;
                 EndGame();
             }
         }
     }
 
+    public void AddScoreEntry(ScoreEntry entry)
+    {
+        session.AddEntry(entry);
+        updateScore.Invoke(session.GetScore());
+    }
+    public void AddAccuracyToLatestEntry(float accuracy)
+    {
+        session.AddAccuracyToLatestEntry(accuracy);
+    }
+
     private void EndGame()
     {
         dollyCart.m_Speed = 0;
-        gameHasEnded = true;
         gameEnded.Invoke();
+    }
+
+    public void LoadData(GameData gameData)
+    {
+        player.SetPlayerData(gameData);
+        session = gameData.latestSession;
+    }
+
+    public void SaveData(ref GameData gameData)
+    {
+        throw new NotImplementedException();
     }
 }

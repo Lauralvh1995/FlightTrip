@@ -20,8 +20,13 @@ public class EquationPoint : MonoBehaviour
 
     public UnityEvent<List<Ring>, Equation> onRingsSetup;
     public UnityEvent<int> setupNext;
-    public UnityEvent<int> sendScore;
+    public UnityEvent<ScoreEntry> onScore;
     public UnityEvent equationFinished;
+
+    [SerializeField]
+    float ringRadius = 1f;
+    float ringInnerRadius = 0.4f;
+    float planeMargin = 0.5f;
 
     private void OnEnable()
     {
@@ -29,15 +34,14 @@ public class EquationPoint : MonoBehaviour
         {
             player = FindObjectOfType<Player>();
         }
-        sendScore.AddListener(player.AddScore);
         onRingsSetup.AddListener(player.SetPlayerUI);
     }
     private void OnDisable()
     {
-        sendScore.RemoveListener(player.AddScore);
         onRingsSetup.RemoveListener(player.SetPlayerUI);
         setupNext.RemoveAllListeners();
         equationFinished.RemoveAllListeners();
+        onScore.RemoveAllListeners();
     }
 
     public void SetBasesAndGenerateEquation(List<int> bases, Operator op, Player player)
@@ -94,29 +98,31 @@ public class EquationPoint : MonoBehaviour
                 closestAnchor = anchor;
             }
         }
+        int answer = closestAnchor.Ring.Answer;
 
-        //Scoring
-        int score = 10; //base score for everything
-        int correctAnswer = equation.GetCorrectAnswer();
+        float accuracy = 0f;
+        float distancePlaneToRingCenter = Vector3.Distance(closestAnchor.Ring.GetPositionWithinEquationPoint(), player.Plane.localPosition) + planeMargin;
+        Debug.Log("Distance from plane to ring center: " + distancePlaneToRingCenter);
+        //If plane hits ring at all
+        if (distancePlaneToRingCenter < ringRadius)
+        {
+            accuracy = 1f;
+            //If plane goes through the center
+            if (distancePlaneToRingCenter < ringInnerRadius)
+            {
+                accuracy = 2f;
+            }
+            //add a fraction of 10 for accuracy
+            else
+            {
+                accuracy += distancePlaneToRingCenter - ringInnerRadius;
+            }
+        }
 
-        //check answer
-        if (closestAnchor.Ring.Answer == correctAnswer)
-        {
-            Debug.Log("Correct answer entered");
-            score += 10;
-            //Correct
-        }
-        else
-        {
-            Debug.Log("Incorrect answer entered. The correct answer was " + correctAnswer);
-            //Incorrect
-        }
         //Send the signal for the next point to generate a question
-
+        onScore.Invoke(new ScoreEntry(equation, answer, accuracy));
         setupNext.Invoke(NextPointIndex);
-        sendScore.Invoke(score);
         equationFinished.Invoke();
         //TODO: do some thing with track selection stuff
-        //TODO: save the score breakdown somewhere
     }
 }

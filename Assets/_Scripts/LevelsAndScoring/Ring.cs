@@ -7,6 +7,9 @@ using UnityEngine.Events;
 public class Ring : MonoBehaviour
 {
     [SerializeField]
+    GameManager manager;
+
+    [SerializeField]
     ParticleSystem particles;
     [SerializeField]
     Player player;
@@ -21,18 +24,31 @@ public class Ring : MonoBehaviour
     float ringInnerRadius = 0.4f;
 
     [SerializeField]
-    UnityEvent<int> sendScore;
+    Vector3 positionWithinEquationPoint;
+
+    [SerializeField]
+    UnityEvent<float> sendAccuracy;
     public int Answer { get => answer; set => answer = value; }
     private void OnEnable()
     {
+        if(manager == null)
+        {
+            manager = FindObjectOfType<GameManager>();
+        }
         if (player == null)
             player = FindObjectOfType<Player>();
-        sendScore.AddListener(player.AddScore);
+        sendAccuracy.AddListener(manager.AddAccuracyToLatestEntry);
         particles = GetComponentInChildren<ParticleSystem>();
     }
     private void OnDisable()
     {
-        sendScore.RemoveListener(player.AddScore);
+        sendAccuracy.RemoveListener(manager.AddAccuracyToLatestEntry);
+    }
+
+    private void Start()
+    {
+        EquationPoint parentPoint = GetComponentInParent<EquationPoint>();
+        positionWithinEquationPoint = parentPoint.transform.position - transform.position;
     }
 
     public void SetGraphics(int answer)
@@ -41,32 +57,8 @@ public class Ring : MonoBehaviour
         answerText.text = answer.ToString();
     }
 
-    private void OnCollisionEnter(Collision other)
+    public Vector3 GetPositionWithinEquationPoint()
     {
-        if (other.gameObject.layer == LayerMask.GetMask("Airplane"))
-        {
-            particles.Play();
-            //Points for ring accuracy
-            float distancePlaneToRingCenter = Vector3.Distance(other.GetContact(0).point, transform.localPosition);
-            int score = 0;
-            Debug.Log("Distance from plane to ring center: " + distancePlaneToRingCenter);
-            //If plane hits ring at all
-            if (distancePlaneToRingCenter < ringRadius)
-            {
-                score += 10;
-                //If plane goes through the center
-                if (distancePlaneToRingCenter < ringInnerRadius)
-                {
-                    score += 10;
-                }
-                //add a fraction of 10 for accuracy
-                else
-                {
-                    score += Mathf.FloorToInt(10f * (distancePlaneToRingCenter - ringInnerRadius));
-                }
-            }
-            sendScore.Invoke(score);
-            //TODO: Add another score breakdown thing here
-        }
+        return positionWithinEquationPoint;
     }
 }
