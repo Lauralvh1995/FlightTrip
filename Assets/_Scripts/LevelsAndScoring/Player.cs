@@ -63,4 +63,9 @@ public class Player : MonoBehaviour
     {
         this.playerData = data.playerData;
     }
+
+    public void AddSessionData(Session session)
+    {
+        playerData.playedSessions.Add(session);
+    }
 }

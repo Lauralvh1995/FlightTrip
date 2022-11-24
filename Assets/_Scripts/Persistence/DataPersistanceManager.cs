@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using UnityEngine.SceneManagement;
 
 public class DataPersistanceManager : MonoBehaviour
 {
     [Header("File Storage Config")]
     [SerializeField] private string fileName;
+
 
 
     private GameData gameData;
@@ -20,16 +22,30 @@ public class DataPersistanceManager : MonoBehaviour
     {
         if(instance != null)
         {
-            Debug.LogError("Found more than one instance in the scene!");
+            Debug.LogWarning("Found more than one instance in the scene!");
+            Destroy(this.gameObject);
+            return;
         }
         instance = this;
+        DontDestroyOnLoad(this.gameObject);
+        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
     }
 
     private void Start()
     {
-        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
-        this.dataPersistenceObjects = FindAllDataPersistenceObjects();
-        LoadGame();
+
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
     }
 
     private List<IDataPersistence> FindAllDataPersistenceObjects()
@@ -55,8 +71,8 @@ public class DataPersistanceManager : MonoBehaviour
 
         if(gameData == null)
         {
-            Debug.Log("There was no game data to load, initializing new game");
-            NewGame();
+            Debug.Log("There was no game data to load. A new game data has to be created first");
+            return;
         }
         foreach (IDataPersistence persistenceObj in dataPersistenceObjects)
         {
@@ -66,10 +82,37 @@ public class DataPersistanceManager : MonoBehaviour
 
     public void SaveGame()
     {
+        if(this.gameData == null)
+        {
+            Debug.LogWarning("No game data to save. A new game data has to be created first");
+            return;
+        }
+
         foreach (IDataPersistence persistenceObj in dataPersistenceObjects)
         {
             persistenceObj.SaveData(ref gameData);
         }
         dataHandler.SaveData(gameData);
+    }
+
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        this.dataPersistenceObjects = FindAllDataPersistenceObjects();
+        LoadGame();
+    }
+
+    public void OnSceneUnloaded(Scene scene)
+    {
+        SaveGame();
+    }
+
+    public bool HasGameData()
+    {
+        return gameData != null;
+    }
+    [ContextMenu("Create Debug Data")]
+    public void CreateDebugData()
+    {
+        NewGame();
     }
 }

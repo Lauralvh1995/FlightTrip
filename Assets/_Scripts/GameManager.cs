@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     private void Start()
     {
-        session = DataSaver.loadData<Session>("sessionInfo");
         equationPoints = new Dictionary<CinemachineSmoothPath, List<EquationPoint>>();
         SwitchTrack(tracks[0]);
         player = FindObjectOfType<Player>();
@@ -131,20 +130,15 @@ public class GameManager : MonoBehaviour, IDataPersistence
             }
         }
     }
-
     public void AddScoreEntry(ScoreEntry entry)
     {
         session.AddEntry(entry);
         updateScore.Invoke(session.GetScore());
     }
-    public void AddAccuracyToLatestEntry(float accuracy)
-    {
-        session.AddAccuracyToLatestEntry(accuracy);
-    }
-
     private void EndGame()
     {
         dollyCart.m_Speed = 0;
+        player.AddSessionData(session);
         gameEnded.Invoke();
     }
 
@@ -156,6 +150,6 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void SaveData(ref GameData gameData)
     {
-        throw new NotImplementedException();
+        
     }
 }

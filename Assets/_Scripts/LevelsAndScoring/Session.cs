@@ -49,11 +49,6 @@ public class Session
         scoreEntries.Add(entry);
     }
 
-    public void AddAccuracyToLatestEntry(float accuracy)
-    {
-        scoreEntries[scoreEntries.Count - 1].SetAccuracy(accuracy);
-    }
-
     public int GetScore()
     {
         int score = 0;

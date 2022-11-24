@@ -2273,6 +2273,75 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Damping: 0
+--- !u!1001 &462579795
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1274417912660656745, guid: 18ea397d114460e47a07a506dac51312,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274417912660656745, guid: 18ea397d114460e47a07a506dac51312,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274417912660656745, guid: 18ea397d114460e47a07a506dac51312,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274417912660656745, guid: 18ea397d114460e47a07a506dac51312,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274417912660656745, guid: 18ea397d114460e47a07a506dac51312,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274417912660656745, guid: 18ea397d114460e47a07a506dac51312,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274417912660656745, guid: 18ea397d114460e47a07a506dac51312,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274417912660656745, guid: 18ea397d114460e47a07a506dac51312,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274417912660656745, guid: 18ea397d114460e47a07a506dac51312,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274417912660656745, guid: 18ea397d114460e47a07a506dac51312,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274417912660656745, guid: 18ea397d114460e47a07a506dac51312,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274417912660656747, guid: 18ea397d114460e47a07a506dac51312,
+        type: 3}
+      propertyPath: m_Name
+      value: DataPersistence
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 18ea397d114460e47a07a506dac51312, type: 3}
 --- !u!1 &482155643
 GameObject:
   m_ObjectHideFlags: 0
@@ -10003,6 +10072,7 @@ MonoBehaviour:
     bases: 040000000200000003000000
     op: 2
     thinkingTime: 3
+    scoreEntries: []
   amountOfSectionsPerTrack: 10
   currentEquationIndex: 0
   equationsFinished: 0
@@ -10047,6 +10117,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  updateScore:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1189039110
 GameObject:
   m_ObjectHideFlags: 0
@@ -10349,6 +10422,7 @@ GameObject:
   - component: {fileID: 1239485137}
   - component: {fileID: 1239485139}
   - component: {fileID: 1239485138}
+  - component: {fileID: 1239485140}
   m_Layer: 5
   m_Name: ScoreUI
   m_TagString: Untagged
@@ -10473,6 +10547,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239485136}
   m_CullTransparentMesh: 1
+--- !u!114 &1239485140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239485136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e848219488a5558479628e68fcd8a8f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreUI: {fileID: 0}
 --- !u!1 &1284338470
 GameObject:
   m_ObjectHideFlags: 0
@@ -13576,34 +13663,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c52225694435c3449d8d7960d7b82fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData:
+    playerName: Naamloos
+    playerColor: 0
+    planeColor: 0
+    playedSessions: []
   rings:
   - {fileID: 6104529386360323665}
   - {fileID: 1394154597683383389}
   - {fileID: 4221915495841650191}
   - {fileID: 368487321119864546}
-  score: 0
   currentEquation:
     firstNumber: 0
     op: 0
     secondNumber: 0
   equationText: {fileID: 698154934}
   plane: {fileID: 1980934366}
-  scoreUI: {fileID: 1239485138}
-  passScore:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1670285643}
-        m_TargetAssemblyTypeName: EndGameText, Assembly-CSharp
-        m_MethodName: GameEnded
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &2137185677
 GameObject:
   m_ObjectHideFlags: 0
@@ -13900,14 +13975,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903b847a74a93a349abe2ca19b1d7ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOnPlayer: 1
   particles: {fileID: 0}
   player: {fileID: 0}
   answerText: {fileID: 4952675327171413916}
   answer: 0
   renderer: {fileID: 7292696361269657447}
-  ringRadius: 1
-  ringInnerRadius: 0.4
-  sendScore:
+  positionWithinEquationPoint: {x: 0, y: 0, z: 0}
+  sendAccuracy:
     m_PersistentCalls:
       m_Calls: []
 --- !u!199 &597777419504363621
@@ -14194,14 +14269,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903b847a74a93a349abe2ca19b1d7ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOnPlayer: 1
   particles: {fileID: 0}
   player: {fileID: 0}
   answerText: {fileID: 5980576364138609955}
   answer: 0
   renderer: {fileID: 8318418784233850328}
-  ringRadius: 1
-  ringInnerRadius: 0.4
-  sendScore:
+  positionWithinEquationPoint: {x: 0, y: 0, z: 0}
+  sendAccuracy:
     m_PersistentCalls:
       m_Calls: []
 --- !u!33 &1403627319288333086
@@ -28902,14 +28977,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903b847a74a93a349abe2ca19b1d7ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOnPlayer: 1
   particles: {fileID: 0}
   player: {fileID: 0}
   answerText: {fileID: 8876893358344808305}
   answer: 0
   renderer: {fileID: 6538870630757736330}
-  ringRadius: 1
-  ringInnerRadius: 0.4
-  sendScore:
+  positionWithinEquationPoint: {x: 0, y: 0, z: 0}
+  sendAccuracy:
     m_PersistentCalls:
       m_Calls: []
 --- !u!4 &4481622138743446878
@@ -29523,14 +29598,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903b847a74a93a349abe2ca19b1d7ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOnPlayer: 1
   particles: {fileID: 8538048448891547523}
   player: {fileID: 0}
   answerText: {fileID: 1518253613883969327}
   answer: 0
   renderer: {fileID: 3791565611787089876}
-  ringRadius: 1
-  ringInnerRadius: 0.4
-  sendScore:
+  positionWithinEquationPoint: {x: 0, y: 0, z: 0}
+  sendAccuracy:
     m_PersistentCalls:
       m_Calls: []
 --- !u!23 &6181057036554209458

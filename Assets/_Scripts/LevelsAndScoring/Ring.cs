@@ -7,8 +7,7 @@ using UnityEngine.Events;
 public class Ring : MonoBehaviour
 {
     [SerializeField]
-    GameManager manager;
-
+    bool isOnPlayer = false;
     [SerializeField]
     ParticleSystem particles;
     [SerializeField]
@@ -18,10 +17,6 @@ public class Ring : MonoBehaviour
     [SerializeField]
     int answer;
     public new Renderer renderer;
-    [SerializeField]
-    float ringRadius = 1f;
-    [SerializeField]
-    float ringInnerRadius = 0.4f;
 
     [SerializeField]
     Vector3 positionWithinEquationPoint;
@@ -31,24 +26,23 @@ public class Ring : MonoBehaviour
     public int Answer { get => answer; set => answer = value; }
     private void OnEnable()
     {
-        if(manager == null)
-        {
-            manager = FindObjectOfType<GameManager>();
-        }
         if (player == null)
             player = FindObjectOfType<Player>();
-        sendAccuracy.AddListener(manager.AddAccuracyToLatestEntry);
+
         particles = GetComponentInChildren<ParticleSystem>();
     }
     private void OnDisable()
     {
-        sendAccuracy.RemoveListener(manager.AddAccuracyToLatestEntry);
+
     }
 
     private void Start()
     {
-        EquationPoint parentPoint = GetComponentInParent<EquationPoint>();
-        positionWithinEquationPoint = parentPoint.transform.position - transform.position;
+        if (!isOnPlayer)
+        {
+            EquationPoint parentPoint = GetComponentInParent<EquationPoint>();
+            positionWithinEquationPoint = parentPoint.transform.position - transform.position;
+        }
     }
 
     public void SetGraphics(int answer)
