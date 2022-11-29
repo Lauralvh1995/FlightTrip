@@ -39,11 +39,13 @@ public class GameSetup : MonoBehaviour, IDataPersistence
         {
             if (thinkingTime != -1)
             {
+                DataPersistanceManager.instance.SaveGame();
                 SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
             }
             else
             {
                 thinkingTime = thinkingTimeMedium;
+                DataPersistanceManager.instance.SaveGame();
                 SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
             }
         }
@@ -74,7 +76,7 @@ public class GameSetup : MonoBehaviour, IDataPersistence
         this.player.SetPlayerData(gameData);
     }
 
-    public void SaveData(ref GameData gameData)
+    public void SaveData(GameData gameData)
     {
         gameData.latestSession = new Session(10, selectedTables, Operator.Multiply, thinkingTime);
     }

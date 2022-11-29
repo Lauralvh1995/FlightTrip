@@ -63,6 +63,10 @@ public class Player : MonoBehaviour
     {
         this.playerData = data.playerData;
     }
+    public PlayerData GetPlayerData()
+    {
+        return playerData;
+    }
 
     public void AddSessionData(Session session)
     {

@@ -148,8 +148,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         session = gameData.latestSession;
     }
 
-    public void SaveData(ref GameData gameData)
+    public void SaveData(GameData gameData)
     {
-        
+        gameData.playerData = player.GetPlayerData();
     }
 }
