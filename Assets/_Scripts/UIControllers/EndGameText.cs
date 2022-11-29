@@ -10,14 +10,17 @@ public class EndGameText : MonoBehaviour
     TextMeshProUGUI gameOverText;
     [SerializeField]
     TextMeshProUGUI totalScoreText;
+    [SerializeField]
+    string returnScene = "TableSelect";
     public void GameEnded(int score)
     {
-        totalScoreText.text = "Eindscore \n \n" + score;
+        totalScoreText.text = score.ToString();
         gameOverText.gameObject.SetActive(true);
     }
 
     public void BackToTitleScreen()
     {
-        SceneManager.LoadScene("TitleScreen");
+        DataPersistanceManager.instance.SaveGame();
+        SceneManager.LoadScene(returnScene);
     }
 }

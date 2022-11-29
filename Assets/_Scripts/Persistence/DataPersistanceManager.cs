@@ -10,8 +10,7 @@ public class DataPersistanceManager : MonoBehaviour
     [Header("File Storage Config")]
     [SerializeField] private string fileName;
 
-
-
+    [SerializeField]
     private GameData gameData;
     private List<IDataPersistence> dataPersistenceObjects;
 
@@ -20,7 +19,7 @@ public class DataPersistanceManager : MonoBehaviour
 
     private void Awake()
     {
-        if(instance != null)
+        if (instance != null)
         {
             Debug.LogWarning("Found more than one instance in the scene!");
             Destroy(this.gameObject);
@@ -48,7 +47,7 @@ public class DataPersistanceManager : MonoBehaviour
 
     private List<IDataPersistence> FindAllDataPersistenceObjects()
     {
-        IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>()
+        IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>(true)
             .OfType<IDataPersistence>();
         return new List<IDataPersistence>(dataPersistenceObjects);
     }
@@ -58,9 +57,18 @@ public class DataPersistanceManager : MonoBehaviour
         SaveGame();
     }
 
+
     public void NewGame()
     {
         this.gameData = new GameData();
+
+    }
+    [ContextMenu("Create Debug Data")]
+    public void CreateDebugData()
+    {
+        NewGame();
+        FindAllDataPersistenceObjects();
+        SaveGame();
     }
 
     public void LoadGame()
@@ -85,7 +93,6 @@ public class DataPersistanceManager : MonoBehaviour
             Debug.LogWarning("No game data to save. A new game data has to be created first");
             return;
         }
-
         foreach (IDataPersistence persistenceObj in dataPersistenceObjects)
         {
             persistenceObj.SaveData(gameData);
@@ -101,10 +108,5 @@ public class DataPersistanceManager : MonoBehaviour
     public bool HasGameData()
     {
         return gameData != null;
-    }
-    [ContextMenu("Create Debug Data")]
-    public void CreateDebugData()
-    {
-        NewGame();
     }
 }

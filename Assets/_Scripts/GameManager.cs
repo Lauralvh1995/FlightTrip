@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     [SerializeField]
     UnityEvent gameEnded;
+    [SerializeField]
+    UnityEvent<int> gameEndedScore;
 
     [SerializeField]
     UnityEvent<int> updateScore;
@@ -45,7 +47,6 @@ public class GameManager : MonoBehaviour, IDataPersistence
     {
         equationPoints = new Dictionary<CinemachineSmoothPath, List<EquationPoint>>();
         SwitchTrack(tracks[0]);
-        player = FindObjectOfType<Player>();
         InitializeEquations();
     }
     private void Update()
@@ -140,6 +141,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         dollyCart.m_Speed = 0;
         player.AddSessionData(session);
         gameEnded.Invoke();
+        gameEndedScore.Invoke(session.GetScore());
     }
 
     public void LoadData(GameData gameData)

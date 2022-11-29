@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
+[RequireComponent(typeof(CursorMovement))]
 public class CursorInput : MonoBehaviour
 {
     [SerializeField]

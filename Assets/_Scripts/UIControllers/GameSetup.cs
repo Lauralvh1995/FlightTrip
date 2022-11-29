@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameSetup : MonoBehaviour, IDataPersistence
 {
     [SerializeField]
-    Player player;
+    PlayerData playerData;
 
     [SerializeField]
     List<int> selectedTables;
@@ -73,7 +73,7 @@ public class GameSetup : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData gameData)
     {
-        this.player.SetPlayerData(gameData);
+        this.playerData = gameData.playerData;
     }
 
     public void SaveData(GameData gameData)
