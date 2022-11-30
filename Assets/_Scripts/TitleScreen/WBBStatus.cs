@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class WBBStatus : MonoBehaviour
 {
@@ -13,9 +14,15 @@ public class WBBStatus : MonoBehaviour
     TextMeshProUGUI connectedText;
 
     [SerializeField]
-    Button characterCreationButton;
+    UnityEvent<bool> enableButtons;
+
     [SerializeField]
-    Button startGameButton;
+    GameObject errorPopup;
+
+    private void Start()
+    {
+        ConnectWBB();
+    }
 
     public void ConnectWBB()
     {
@@ -34,18 +41,24 @@ public class WBBStatus : MonoBehaviour
         if (status)
         {
             connectedText.text = "Balance Board verbonden!";
-            EnableUIButtons();
+            enableButtons.Invoke(true);
         }
         else
         {
             connectedText.text = "Geen Balance Board verbonden. Sluit het spel af en verbind het bord." +
                 "\n Vraag je leraar om hulp als je er niet uit komt.";
+
+            ShowErrorPopUp();
         }
     }
 
-    private void EnableUIButtons()
+    private void ShowErrorPopUp()
     {
-        startGameButton.interactable = true;
-        characterCreationButton.interactable = true;
+        errorPopup.SetActive(true);
+        enableButtons.Invoke(false);
+    }
+    public void CloseGame()
+    {
+        Application.Quit();
     }
 }

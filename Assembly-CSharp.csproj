@@ -121,6 +121,7 @@
     <Compile Include="Assets\_Scripts\CharacterCreation\PlayerObject.cs" />
     <Compile Include="Assets\_Scripts\CharacterCreation\PlaneObject.cs" />
     <Compile Include="Assets\_Scripts\TitleScreen\WBBStatus.cs" />
+    <Compile Include="Assets\_Scripts\TitleScreen\TitleScreenController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
