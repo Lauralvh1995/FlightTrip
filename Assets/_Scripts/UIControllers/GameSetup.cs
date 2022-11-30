@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class GameSetup : MonoBehaviour, IDataPersistence
 {
+    [Header("Player Data")]
     [SerializeField]
     PlayerData playerData;
 
+    [Header("Session Data")]
     [SerializeField]
     List<int> selectedTables;
 
@@ -79,6 +81,11 @@ public class GameSetup : MonoBehaviour, IDataPersistence
     public void SaveData(GameData gameData)
     {
         gameData.latestSession = new Session(10, selectedTables, Operator.Multiply, thinkingTime);
+    }
+
+    public void ReturnToTitleScreen()
+    {
+        SceneManager.LoadScene("TitleScreen");
     }
 }
 
