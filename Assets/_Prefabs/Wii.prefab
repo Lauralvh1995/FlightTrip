@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400154}
   - component: {fileID: 11400000}
+  - component: {fileID: 6900553848399086580}
   m_Layer: 0
   m_Name: Wii
   m_TagString: Untagged
@@ -44,3 +45,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dba9559d80dc84c2f92d7aa30050c217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6900553848399086580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db2f43c609e96ac42bbf1e07b97f1f10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCOM: {x: 0, y: 0}
+  previousCOM: {x: 0, y: 0}
+  OnInputUpdate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: CursorMovement, Assembly-CSharp
+        m_MethodName: UpdatePosition
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
