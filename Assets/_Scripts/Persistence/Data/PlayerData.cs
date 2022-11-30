@@ -16,7 +16,7 @@ public class PlayerData
     public PlayerData()
     {
         playerID = Guid.NewGuid().ToString();
-        playerName = "Naamloos";
+        playerName = "Koos Naamloos";
         playerColor = (int)PlayerColor.WHITE;
         planeColor = (int)PlaneColor.WHITE;
         playedSessions = new List<Session>();
