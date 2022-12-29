@@ -20,9 +20,6 @@ public class Ring : MonoBehaviour
 
     [SerializeField]
     Vector3 positionWithinEquationPoint;
-
-    [SerializeField]
-    UnityEvent<float> sendAccuracy;
     public int Answer { get => answer; set => answer = value; }
     private void OnEnable()
     {
