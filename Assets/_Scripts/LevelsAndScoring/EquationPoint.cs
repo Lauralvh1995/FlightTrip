@@ -71,6 +71,7 @@ public class EquationPoint : MonoBehaviour
         //Assign correct answer to a random ring
         int randomRingIndex = Random.Range(0, rings.Count);
         rings[randomRingIndex].SetGraphics(equation.GetCorrectAnswer());
+		rings[randomRingIndex].Answer = equation.GetCorrectAnswer();
         onRingsSetup.Invoke(rings, equation);
     }
     private void OnTriggerEnter(Collider other)

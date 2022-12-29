@@ -37,7 +37,7 @@ public class CursorMovement : MonoBehaviour
     private void Awake()
     {
         screenAspect = Camera.main.aspect;
-        verticalBounds = parentCanvas.rect.height/2 - rectTransform.rect.height/2;
+        verticalBounds = parentCanvas.rect.height - rectTransform.rect.height;
         horizontalBounds = verticalBounds * screenAspect;
     }
 
