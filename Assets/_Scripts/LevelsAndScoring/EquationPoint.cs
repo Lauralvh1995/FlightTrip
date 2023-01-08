@@ -38,6 +38,7 @@ public class EquationPoint : MonoBehaviour
 
     public UnityEvent<List<Ring>, Equation> onRingsSetup;
     public UnityEvent<int> setupNext;
+    public UnityEvent<int, Equation> setupNextWhenWrong;
     public UnityEvent<ScoreEntry> onScore;
     public UnityEvent equationFinished;
 
@@ -82,6 +83,14 @@ public class EquationPoint : MonoBehaviour
         //Spawn Rings
         SetUpRings();
     }
+    public void SetupPresetEquation(Equation equation, Player player)
+    {
+        this.equation = equation;
+        this.equation.GeneratePreset();
+        this.player = player;
+        SetUpRings();
+    }
+
 
     public void SetUpRings()
     {
@@ -161,8 +170,12 @@ public class EquationPoint : MonoBehaviour
 
         //Send the signal for the next point to generate a question
         onScore.Invoke(new ScoreEntry(equation, answer, accuracy));
-        setupNext.Invoke(NextPointIndex);
         equationFinished.Invoke();
+        if (answer == equation.GetCorrectAnswer())
+            setupNext.Invoke(NextPointIndex);
+        else
+            setupNextWhenWrong.Invoke(nextPointIndex, equation);
+
         //TODO: do some thing with track selection stuff
     }
 }

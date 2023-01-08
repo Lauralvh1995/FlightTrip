@@ -22,8 +22,13 @@ public class Equation : ICloneable
         int randomIndex = UnityEngine.Random.Range(0, bases.Count);
         firstNumber = UnityEngine.Random.Range(1, 11);
         secondNumber = bases[randomIndex];
+        GeneratePreset();
+    }
+
+    public void GeneratePreset()
+    {
         generatedAnswers = new List<int>();
-        if(firstNumber == 1)
+        if (firstNumber == 1)
         {
             generatedAnswers.Add(2 * secondNumber);
             generatedAnswers.Add(3 * secondNumber);
