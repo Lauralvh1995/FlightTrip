@@ -4,11 +4,16 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(PlayerColorController))]
 public class Player : MonoBehaviour
 {
+    [Header("Other Components and Data")]
     [SerializeField]
     PlayerData playerData;
+    [SerializeField]
+    PlayerColorController colorController;
 
+    [Header("Rings and Equation")]
     [SerializeField]
     List<Ring> rings;
     [SerializeField]
@@ -38,6 +43,11 @@ public class Player : MonoBehaviour
     public Quadrant Quadrant { get => quadrant; private set => quadrant = value; }
     public float DistanceToCenterOfRing { get => distanceToCenterOfRing; private set => distanceToCenterOfRing = value; }
 
+    private void Start()
+    {
+        colorController = GetComponent<PlayerColorController>();
+        colorController.SetUpGraphics(playerData.planeColor, playerData.playerColor);
+    }
     private void Update()
     {
         if(plane.localPosition.x < 0 && plane.localPosition.y < 0)

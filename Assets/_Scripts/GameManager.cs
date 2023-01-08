@@ -7,18 +7,27 @@ using System;
 
 public class GameManager : MonoBehaviour, IDataPersistence
 {
+    [Header("Player")]
     [SerializeField]
     Player player;
+
+    [Header("Game State")]
     [SerializeField]
     bool gameHasEnded = false;
+    [SerializeField]
+    CinemachineSmoothPath currentTrack;
+    [SerializeField]
+    int currentEquationIndex = 0;
+    [SerializeField]
+    int equationsFinished = 0;
+    [SerializeField]
+    float timeToNextWaypoint = 0f;
+
+    [Header("Set Up")]
     [SerializeField]
     CinemachineDollyCart dollyCart;
     [SerializeField]
     List<CinemachineSmoothPath> tracks;
-    [SerializeField]
-    CinemachineSmoothPath currentTrack;
-    [SerializeField]
-    EquationPoint equationPointPrefab;
     [SerializeField]
     Dictionary<CinemachineSmoothPath, List<EquationPoint>> equationPoints;
     [SerializeField]
@@ -26,22 +35,21 @@ public class GameManager : MonoBehaviour, IDataPersistence
     [SerializeField]
     int amountOfSectionsPerTrack = 10;
     [SerializeField]
-    int currentEquationIndex = 0;
-    [SerializeField]
-    int equationsFinished = 0;
-
-    [SerializeField]
-    float timeToNextWaypoint = 0f;
-    [SerializeField]
     int timeBetweenRingsAndTurnIn = 2;
 
+    [Header("Prefabs")]
+    [SerializeField]
+    EquationPoint equationPointPrefab;
+
+    [Header("Events")]
     [SerializeField]
     UnityEvent gameEnded;
     [SerializeField]
     UnityEvent<int> gameEndedScore;
-
     [SerializeField]
     UnityEvent<int> updateScore;
+    [SerializeField]
+    UnityEvent<bool> answerGiven;
 
     private void Start()
     {
@@ -109,6 +117,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     }
     public void SetupNextEquation(int index, Equation previous, bool correct)
     {
+        answerGiven.Invoke(correct);
         if (!gameHasEnded)
         {
             currentEquationIndex = index;

@@ -9,8 +9,6 @@ public class Ring : MonoBehaviour
     [SerializeField]
     bool isOnPlayer = false;
     [SerializeField]
-    ParticleSystem particles;
-    [SerializeField]
     Player player;
     [SerializeField]
     TextMeshPro answerText;
@@ -25,8 +23,6 @@ public class Ring : MonoBehaviour
     {
         if (player == null)
             player = FindObjectOfType<Player>();
-
-        particles = GetComponentInChildren<ParticleSystem>();
     }
     private void OnDisable()
     {

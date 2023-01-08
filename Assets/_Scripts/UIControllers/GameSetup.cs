@@ -12,7 +12,6 @@ public class GameSetup : MonoBehaviour, IDataPersistence
     [Header("Session Data")]
     [SerializeField]
     List<int> selectedTables;
-
     [SerializeField]
     int thinkingTimeEasy = 6;
     [SerializeField]

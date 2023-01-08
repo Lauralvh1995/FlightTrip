@@ -5,8 +5,15 @@ using UnityEngine.Events;
 
 public class EquationPoint : MonoBehaviour
 {
+    [Header("Player")]
+    [SerializeField]
+    Player player;
+
+    [Header("Equation")]
     [SerializeField]
     Equation equation;
+
+    [Header("Rings")]
     [SerializeField]
     List<Ring> rings;
     [SerializeField]
@@ -18,9 +25,7 @@ public class EquationPoint : MonoBehaviour
     [SerializeField]
     Ring ringTR;
 
-    [SerializeField]
-    Player player;
-
+    [Header("Anchors")]
     [SerializeField]
     private List<RingAnchor> ringAnchors;
     [SerializeField]
@@ -32,18 +37,23 @@ public class EquationPoint : MonoBehaviour
     [SerializeField]
     RingAnchor ringAnchorTR;
 
+    [Header("Properties")]
     [SerializeField]
     private int nextPointIndex;
     public int NextPointIndex { get => nextPointIndex; set => nextPointIndex = value; }
+    [SerializeField]
+    float ringRadius = 1f;
+    public float RingRadius { get => ringRadius; private set => ringRadius = value; }
+    [SerializeField]
+    float ringInnerRadius = 0.4f;
+    public float RingInnerRadius { get => ringInnerRadius; private set => ringInnerRadius = value; }
 
+    [Header("Events")]
+    //These are public because the Game Manager sets them
     public UnityEvent<List<Ring>, Equation> onRingsSetup;
     public UnityEvent<int, Equation, bool> setupNext;
     public UnityEvent<ScoreEntry> onScore;
     public UnityEvent equationFinished;
-
-    [SerializeField]
-    float ringRadius = 1f;
-    float ringInnerRadius = 0.4f;
 
     private void OnEnable()
     {
