@@ -3164,7 +3164,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 724611986}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -3292,7 +3292,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -3785,7 +3785,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 10
+    angle: 2
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -4107,22 +4107,22 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0
-          inSlope: 0
-          outSlope: 1
-          tangentMode: 0
+          value: 0.6901245
+          inSlope: 0.3098755
+          outSlope: 0.3098755
+          tangentMode: 34
           weightedMode: 0
-          inWeight: 0.33333334
+          inWeight: 0
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
           value: 1
-          inSlope: 1
-          outSlope: 0
-          tangentMode: 0
+          inSlope: 0.3098755
+          outSlope: 0.3098755
+          tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.33333334
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
@@ -9933,12 +9933,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2118237323}
   gameHasEnded: 0
+  currentTrack: {fileID: 0}
+  currentEquationIndex: 0
+  equationsFinished: 0
+  timeToNextWaypoint: 0
   dollyCart: {fileID: 1538761890}
   tracks:
   - {fileID: 877380290}
-  currentTrack: {fileID: 0}
-  equationPointPrefab: {fileID: 7822995247785648677, guid: d3274b82de20aee4c95ebe42c176d97b,
-    type: 3}
   session:
     sessionID: 42b843c7-88e9-4493-81ce-5fca9e9e8398
     date: 1669813445
@@ -9948,10 +9949,9 @@ MonoBehaviour:
     thinkingTime: 3
     scoreEntries: []
   amountOfSectionsPerTrack: 10
-  currentEquationIndex: 0
-  equationsFinished: 0
-  timeToNextWaypoint: 0
   timeBetweenRingsAndTurnIn: 3
+  equationPointPrefab: {fileID: 7822995247785648677, guid: d3274b82de20aee4c95ebe42c176d97b,
+    type: 3}
   gameEnded:
     m_PersistentCalls:
       m_Calls:
@@ -10403,7 +10403,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -18385,7 +18385,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -23718,7 +23718,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOnPlayer: 1
-  particles: {fileID: 0}
   player: {fileID: 0}
   answerText: {fileID: 5709341022554573667}
   answer: 0
@@ -23737,7 +23736,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOnPlayer: 1
-  particles: {fileID: 0}
   player: {fileID: 0}
   answerText: {fileID: 5709341023125095935}
   answer: 0
@@ -23756,7 +23754,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOnPlayer: 1
-  particles: {fileID: 0}
   player: {fileID: 0}
   answerText: {fileID: 5709341024057403788}
   answer: 0
@@ -23775,7 +23772,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOnPlayer: 1
-  particles: {fileID: 0}
   player: {fileID: 0}
   answerText: {fileID: 5709341023758584920}
   answer: 0

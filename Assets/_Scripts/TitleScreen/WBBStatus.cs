@@ -61,4 +61,10 @@ public class WBBStatus : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void ClosePopupBecauseWeHaveConnectionAfterAll()
+    {
+        errorPopup.SetActive(false);
+        enableButtons.Invoke(true);
+    }
 }
