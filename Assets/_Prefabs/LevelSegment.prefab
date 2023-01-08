@@ -155,17 +155,17 @@ MonoBehaviour:
     firstNumber: 0
     op: 0
     secondNumber: 0
-  rings:
-  - {fileID: 4241293473942510170}
-  - {fileID: 9173887582668367178}
-  - {fileID: 1702199560387881378}
-  - {fileID: 1423569377167053295}
+  rings: []
+  ringBL: {fileID: 4241293473942510170}
+  ringBR: {fileID: 9173887582668367178}
+  ringTL: {fileID: 1702199560387881378}
+  ringTR: {fileID: 1423569377167053295}
   player: {fileID: 0}
-  ringAnchors:
-  - {fileID: 4813487162252633298}
-  - {fileID: 2680816574995740269}
-  - {fileID: 4341707823685765986}
-  - {fileID: 9177545619660120431}
+  ringAnchors: []
+  ringAnchorBL: {fileID: 9177545619660120431}
+  ringAnchorBR: {fileID: 4341707823685765986}
+  ringAnchorTL: {fileID: 2680816574995740269}
+  ringAnchorTR: {fileID: 4813487162252633298}
   nextPointIndex: 0
   onRingsSetup:
     m_PersistentCalls:
@@ -173,9 +173,13 @@ MonoBehaviour:
   setupNext:
     m_PersistentCalls:
       m_Calls: []
-  sendScore:
+  onScore:
     m_PersistentCalls:
       m_Calls: []
+  equationFinished:
+    m_PersistentCalls:
+      m_Calls: []
+  ringRadius: 1
 --- !u!65 &8330968171885883325
 BoxCollider:
   m_ObjectHideFlags: 0

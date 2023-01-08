@@ -10,10 +10,28 @@ public class EquationPoint : MonoBehaviour
     [SerializeField]
     List<Ring> rings;
     [SerializeField]
+    Ring ringBL;
+    [SerializeField]
+    Ring ringBR;
+    [SerializeField]
+    Ring ringTL;
+    [SerializeField]
+    Ring ringTR;
+
+    [SerializeField]
     Player player;
 
     [SerializeField]
     private List<RingAnchor> ringAnchors;
+    [SerializeField]
+    RingAnchor ringAnchorBL;
+    [SerializeField]
+    RingAnchor ringAnchorBR;
+    [SerializeField]
+    RingAnchor ringAnchorTL;
+    [SerializeField]
+    RingAnchor ringAnchorTR;
+
     [SerializeField]
     private int nextPointIndex;
     public int NextPointIndex { get => nextPointIndex; set => nextPointIndex = value; }
@@ -26,7 +44,6 @@ public class EquationPoint : MonoBehaviour
     [SerializeField]
     float ringRadius = 1f;
     float ringInnerRadius = 0.4f;
-    float planeMargin = 0.5f;
 
     private void OnEnable()
     {
@@ -35,6 +52,19 @@ public class EquationPoint : MonoBehaviour
             player = FindObjectOfType<Player>();
         }
         onRingsSetup.AddListener(player.SetPlayerUI);
+        ringBL = ringAnchorBL.Ring;
+        ringBR = ringAnchorBR.Ring;
+        ringTL = ringAnchorTL.Ring;
+        ringTR = ringAnchorTR.Ring;
+
+        rings.Add(ringBL);
+        rings.Add(ringBR);
+        rings.Add(ringTL);
+        rings.Add(ringTR);
+        ringAnchors.Add(ringAnchorBL);
+        ringAnchors.Add(ringAnchorBR);
+        ringAnchors.Add(ringAnchorTL);
+        ringAnchors.Add(ringAnchorTR);
     }
     private void OnDisable()
     {
@@ -89,20 +119,29 @@ public class EquationPoint : MonoBehaviour
 
     private void EnterAnswer()
     {
-        //Get the closest ring anchor. This determines the answer, and the score
-        RingAnchor closestAnchor = ringAnchors[0];
-        foreach(RingAnchor anchor in ringAnchors)
+        //choose answer based on the player's quadrant
+        int answer = 0;
+        switch (player.Quadrant)
         {
-            if(Vector3.Distance(anchor.transform.localPosition, player.Plane.localPosition) <
-                Vector3.Distance(closestAnchor.transform.localPosition, player.Plane.localPosition))
-            {
-                closestAnchor = anchor;
-            }
+            case Quadrant.BL:
+                answer = ringBL.Answer;
+                break;
+            case Quadrant.BR:
+                answer = ringBR.Answer;
+                break;
+            case Quadrant.TL:
+                answer = ringTL.Answer;
+                break;
+            case Quadrant.TR:
+                answer = ringTR.Answer;
+                break;
+            default:
+                answer = -1; //not an answer
+                break;
         }
-        int answer = closestAnchor.Ring.Answer;
 
         float accuracy = 0f;
-        float distancePlaneToRingCenter = Vector3.Distance(closestAnchor.Ring.GetPositionWithinEquationPoint(), player.Plane.localPosition) + planeMargin;
+        float distancePlaneToRingCenter = player.DistanceToCenterOfRing;
         Debug.Log("Distance from plane to ring center: " + distancePlaneToRingCenter);
         //If plane hits ring at all
         if (distancePlaneToRingCenter < ringRadius)
