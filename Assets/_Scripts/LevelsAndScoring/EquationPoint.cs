@@ -37,8 +37,7 @@ public class EquationPoint : MonoBehaviour
     public int NextPointIndex { get => nextPointIndex; set => nextPointIndex = value; }
 
     public UnityEvent<List<Ring>, Equation> onRingsSetup;
-    public UnityEvent<int> setupNext;
-    public UnityEvent<int, Equation> setupNextWhenWrong;
+    public UnityEvent<int, Equation, bool> setupNext;
     public UnityEvent<ScoreEntry> onScore;
     public UnityEvent equationFinished;
 
@@ -75,10 +74,10 @@ public class EquationPoint : MonoBehaviour
         onScore.RemoveAllListeners();
     }
 
-    public void SetBasesAndGenerateEquation(List<int> bases, Operator op, Player player)
+    public void SetBasesAndGenerateEquation(List<int> bases, Operator op, Player player, Equation previous)
     {
-        equation.GenerateEquation(bases, op);
-        Debug.Log(equation.firstNumber + equation.op + equation.secondNumber);
+        equation.GenerateEquation(bases, op, previous);
+        Debug.Log(equation.firstNumber.ToString() + equation.op.ToString() + equation.secondNumber.ToString());
         this.player = player;
         //Spawn Rings
         SetUpRings();
@@ -167,14 +166,11 @@ public class EquationPoint : MonoBehaviour
                 accuracy += distancePlaneToRingCenter - ringInnerRadius;
             }
         }
-
+        bool correct = answer == equation.GetCorrectAnswer();
         //Send the signal for the next point to generate a question
         onScore.Invoke(new ScoreEntry(equation, answer, accuracy));
         equationFinished.Invoke();
-        if (answer == equation.GetCorrectAnswer())
-            setupNext.Invoke(NextPointIndex);
-        else
-            setupNextWhenWrong.Invoke(nextPointIndex, equation);
+        setupNext.Invoke(NextPointIndex, equation, correct);
 
         //TODO: do some thing with track selection stuff
     }

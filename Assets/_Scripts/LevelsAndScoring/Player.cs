@@ -60,8 +60,8 @@ public class Player : MonoBehaviour
         {
             quadrant = Quadrant.NONE;
         }
-        //the plane is on z = 7.5 in the local position, the rings are at z = 0;
-        Vector3 correctedPlanePosition = plane.localPosition - new Vector3(0, 0, 7.5f);
+        //the plane is on a different z offset
+        Vector3 correctedPlanePosition = plane.localPosition - (Vector3.forward * 7.5f);
         switch (quadrant)
         {
             case Quadrant.BL:

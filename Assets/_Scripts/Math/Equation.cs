@@ -16,12 +16,20 @@ public class Equation : ICloneable
 
     List<int> generatedAnswers;
 
-    public void GenerateEquation(List<int> bases, Operator op)
+    public void GenerateEquation(List<int> bases, Operator op, Equation previous)
     {
         this.op = op;
         int randomIndex = UnityEngine.Random.Range(0, bases.Count);
         firstNumber = UnityEngine.Random.Range(1, 11);
         secondNumber = bases[randomIndex];
+        if (previous != null)
+        {
+            while (this.Equals(previous))
+            {
+                firstNumber = UnityEngine.Random.Range(1, 11);
+                secondNumber = bases[randomIndex];
+            }
+        }
         GeneratePreset();
     }
 
@@ -137,5 +145,16 @@ public class Equation : ICloneable
     public object Clone()
     {
         return MemberwiseClone();
+    }
+
+    public override bool Equals(object obj)
+    {
+        Equation other = obj as Equation;
+        return (this.firstNumber == other.firstNumber) && (this.op == other.op) && (this.secondNumber == other.secondNumber);
+    }
+
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
     }
 }

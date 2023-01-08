@@ -88,15 +88,26 @@ public class GameManager : MonoBehaviour, IDataPersistence
                 }
                 point.onScore.AddListener(AddScoreEntry);
                 point.setupNext.AddListener(SetupNextEquation);
-                point.setupNextWhenWrong.AddListener(SetupNextWhenWrong);
                 point.equationFinished.AddListener(IncrementEquationsFinished);
 
             }
             equationPoints.Add(track, tempList);
         }
-        SetupNextEquation(0);
+        SetupInitialEquation();
     }
-    public void SetupNextWhenWrong(int index, Equation equation)
+    public void SetupInitialEquation()
+    {
+        currentEquationIndex = 0;
+        player.HideRings();
+        player.HideEquation();
+        List<EquationPoint> points;
+        equationPoints.TryGetValue(currentTrack, out points);
+        points[currentEquationIndex].SetBasesAndGenerateEquation(session.Bases, session.Op, player, null);
+        //Delayed show of new info
+        Invoke("ShowEquation", timeToNextWaypoint - timeBetweenRingsAndTurnIn - session.ThinkingTime);
+        Invoke("ShowRings", timeToNextWaypoint - timeBetweenRingsAndTurnIn);
+    }
+    public void SetupNextEquation(int index, Equation previous, bool correct)
     {
         if (!gameHasEnded)
         {
@@ -106,23 +117,14 @@ public class GameManager : MonoBehaviour, IDataPersistence
             List<EquationPoint> points;
             equationPoints.TryGetValue(currentTrack, out points);
             Debug.Log("Activating " + points[index].name);
-            points[index].SetupPresetEquation(equation, player);
-            //Delayed show of new info
-            Invoke("ShowEquation", timeToNextWaypoint - timeBetweenRingsAndTurnIn - session.ThinkingTime);
-            Invoke("ShowRings", timeToNextWaypoint - timeBetweenRingsAndTurnIn);
-        }
-    }
-    public void SetupNextEquation(int index)
-    {
-        if (!gameHasEnded)
-        {
-            currentEquationIndex = index;
-            player.HideRings();
-            player.HideEquation();
-            List<EquationPoint> points;
-            equationPoints.TryGetValue(currentTrack, out points);
-            Debug.Log("Activating " + points[index].name);
-            points[index].SetBasesAndGenerateEquation(session.Bases, session.Op, player);
+            if (correct)
+            {
+                points[currentEquationIndex].SetBasesAndGenerateEquation(session.Bases, session.Op, player, previous);
+            }
+            else
+            {
+                points[currentEquationIndex].SetupPresetEquation(previous, player);
+            }
             //Delayed show of new info
             Invoke("ShowEquation", timeToNextWaypoint - timeBetweenRingsAndTurnIn - session.ThinkingTime);
             Invoke("ShowRings", timeToNextWaypoint - timeBetweenRingsAndTurnIn);
