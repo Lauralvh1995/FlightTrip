@@ -7,18 +7,13 @@ public class WiiInputHandler : MonoBehaviour
 {
     [SerializeField]
     private Vector2 currentCOM;
-    [SerializeField]
-    private Vector2 previousCOM;
 
     [SerializeField]
     UnityEvent<Vector2> OnInputUpdate;
 
-
     void FixedUpdate()
     {
-        
         Vector2 input = Wii.GetCenterOfBalance(0); //Change this if you want a different source of COG input than WiiBuddy
-        previousCOM = currentCOM;
         currentCOM = input;
         //currentCOM = Vector2.Lerp(currentCOM, input, 0.9f * Time.deltaTime);
         OnInputUpdate.Invoke(currentCOM);

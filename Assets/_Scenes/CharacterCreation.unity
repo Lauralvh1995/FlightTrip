@@ -2506,6 +2506,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1265965757471940737, guid: 33e0ee18e5897493a8ab4d5e260f12f4,
+        type: 3}
+      propertyPath: sendCleanedInput.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1265965757471940737, guid: 33e0ee18e5897493a8ab4d5e260f12f4,
+        type: 3}
+      propertyPath: sendCleanedInput.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1265965757471940737, guid: 33e0ee18e5897493a8ab4d5e260f12f4,
+        type: 3}
+      propertyPath: sendCleanedInput.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1396214220}
+    - target: {fileID: -1265965757471940737, guid: 33e0ee18e5897493a8ab4d5e260f12f4,
+        type: 3}
+      propertyPath: sendCleanedInput.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -1265965757471940737, guid: 33e0ee18e5897493a8ab4d5e260f12f4,
+        type: 3}
+      propertyPath: sendCleanedInput.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdatePosition
+      objectReference: {fileID: 0}
+    - target: {fileID: -1265965757471940737, guid: 33e0ee18e5897493a8ab4d5e260f12f4,
+        type: 3}
+      propertyPath: sendCleanedInput.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CursorMovement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: -1265965757471940737, guid: 33e0ee18e5897493a8ab4d5e260f12f4,
+        type: 3}
+      propertyPath: sendCleanedInput.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 100154, guid: 33e0ee18e5897493a8ab4d5e260f12f4, type: 3}
       propertyPath: m_Name
       value: Wii
@@ -2558,14 +2593,26 @@ PrefabInstance:
         type: 3}
       propertyPath: OnInputUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1396214220}
+      objectReference: {fileID: 843949338}
     - target: {fileID: 6900553848399086580, guid: 33e0ee18e5897493a8ab4d5e260f12f4,
         type: 3}
       propertyPath: OnInputUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpdatePosition
+      value: OnInputGiven
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33e0ee18e5897493a8ab4d5e260f12f4, type: 3}
+--- !u!114 &843949338 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -1265965757471940737, guid: 33e0ee18e5897493a8ab4d5e260f12f4,
+    type: 3}
+  m_PrefabInstance: {fileID: 843949337}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2fe2f92a23431458f34b80889bb5b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &889435723
 GameObject:
   m_ObjectHideFlags: 0
@@ -4859,7 +4906,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCOM: {x: 0, y: 0}
-  previousCOM: {x: 0, y: 0}
   OnInputUpdate:
     m_PersistentCalls:
       m_Calls:

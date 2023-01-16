@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     Equation currentEquation;
     [SerializeField]
-    TextMeshPro equationText;
+    TextMeshProUGUI equationText;
     [SerializeField]
     Transform plane;
 
