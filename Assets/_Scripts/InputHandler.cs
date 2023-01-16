@@ -10,28 +10,22 @@ public class InputHandler : MonoBehaviour
     int averageBufferSize = 10;
     [SerializeField]
     List<Vector2> inputs;
-
     [SerializeField]
     UnityEvent<Vector2> sendCleanedInput;
+
+    public List<Vector2> Inputs { get => inputs; set => inputs = value; }
 
     public void OnInputGiven(Vector2 input)
     {
         inputs.Add(input);
         CalculateMovingAverage();
-        CheckForTricks();
     }
-
-    private void CheckForTricks()
-    {
-        Debug.Log("Not implemented yet");
-    }
-
     private void CalculateMovingAverage()
     {
         //take average of the last X inputs, or all inputs if less than X
         Vector2[] lastInputs = new Vector2[averageBufferSize];
 
-        if (inputs.Count < averageBufferSize)
+        if (inputs.Count <= averageBufferSize)
         {
             inputs.CopyTo(lastInputs);
         }
@@ -53,10 +47,5 @@ public class InputHandler : MonoBehaviour
 
         //send out average
         sendCleanedInput.Invoke(averageInput);
-    }
-
-    public void OnGameOver()
-    {
-        //send cleaned movement data to the current game
     }
 }
