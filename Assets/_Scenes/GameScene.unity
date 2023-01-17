@@ -7573,6 +7573,23 @@ MonoBehaviour:
   invertYAxis: 0
   verticalBounds: 2.5
   horizontalBounds: 0
+  inputBuffer: []
+  trickInterval: 25
+  doABarrelRoll:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152481992}
+        m_TargetAssemblyTypeName: PlaneAnimationController, Assembly-CSharp
+        m_MethodName: BarrelRoll
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &657432046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14568,6 +14585,12 @@ Transform:
   m_Father: {fileID: 132096648}
   m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1072430751 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4209970260764944563, guid: d750bdf388ebdba4d98513db1588d85b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1152481986}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1075417022
 GameObject:
   m_ObjectHideFlags: 0
@@ -15076,12 +15099,42 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1152481986}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1072430751}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d9ffba7668a173448d6ce187bde70da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1152481992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072430751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65d483599af1174fa365f14dd2dadd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animation: {fileID: 1152481993}
+  barrelRollLeft: {fileID: 0}
+  barrelRollRight: {fileID: 0}
+--- !u!111 &1152481993
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072430751}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1162086582
 GameObject:
   m_ObjectHideFlags: 0
