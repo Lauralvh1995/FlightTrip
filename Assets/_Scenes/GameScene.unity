@@ -7578,7 +7578,7 @@ MonoBehaviour:
   doABarrelRoll:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1152481992}
+      - m_Target: {fileID: 919132148603199676}
         m_TargetAssemblyTypeName: PlaneAnimationController, Assembly-CSharp
         m_MethodName: BarrelRoll
         m_Mode: 0
@@ -14585,12 +14585,6 @@ Transform:
   m_Father: {fileID: 132096648}
   m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1072430751 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4209970260764944563, guid: d750bdf388ebdba4d98513db1588d85b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1152481986}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1075417022
 GameObject:
   m_ObjectHideFlags: 0
@@ -15041,12 +15035,12 @@ PrefabInstance:
     - target: {fileID: 4083756144247928301, guid: d750bdf388ebdba4d98513db1588d85b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4083756144247928301, guid: d750bdf388ebdba4d98513db1588d85b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4083756144247928301, guid: d750bdf388ebdba4d98513db1588d85b,
         type: 3}
@@ -15099,42 +15093,12 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1152481986}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1072430751}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d9ffba7668a173448d6ce187bde70da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1152481992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1072430751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65d483599af1174fa365f14dd2dadd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animation: {fileID: 1152481993}
-  barrelRollLeft: {fileID: 0}
-  barrelRollRight: {fileID: 0}
---- !u!111 &1152481993
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1072430751}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &1162086582
 GameObject:
   m_ObjectHideFlags: 0
@@ -43247,7 +43211,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148603199675}
-  m_LocalRotation: {x: -1.1641532e-10, y: -0.7071069, z: 1.1641532e-10, w: 0.70710677}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 7.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -43259,7 +43223,7 @@ Transform:
   - {fileID: 2038050824}
   m_Father: {fileID: 963194228}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: -258.56998, y: -90, z: 0}
 --- !u!1 &919132148603199675
 GameObject:
   m_ObjectHideFlags: 0
@@ -43271,6 +43235,8 @@ GameObject:
   - component: {fileID: 543450653076421121}
   - component: {fileID: 657432045}
   - component: {fileID: 657432046}
+  - component: {fileID: 919132148603199677}
+  - component: {fileID: 919132148603199676}
   m_Layer: 0
   m_Name: Airplane_1354
   m_TagString: Untagged
@@ -43278,6 +43244,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &919132148603199676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148603199675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65d483599af1174fa365f14dd2dadd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animation: {fileID: 919132148603199677}
+  barrelRollLeft: {fileID: 7400000, guid: 283fc87d537812b44879074047800c59, type: 2}
+  barrelRollRight: {fileID: 7400000, guid: fed90899b3516434fb484bb33d778585, type: 2}
+--- !u!111 &919132148603199677
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148603199675}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 283fc87d537812b44879074047800c59, type: 2}
+  - {fileID: 7400000, guid: fed90899b3516434fb484bb33d778585, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &1053254988955859485
 MonoBehaviour:
   m_ObjectHideFlags: 0
