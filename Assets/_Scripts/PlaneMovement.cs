@@ -54,8 +54,8 @@ public class PlaneMovement : MonoBehaviour
             inputBuffer.Add(pos);
             //calculate screen position
             int invert = invertYAxis ? -1 : 1;
-            Vector3 localPos = new Vector3(pos.x * speedMultiplier * screenAspect,
-                pos.y * speedMultiplier * invert,
+            Vector3 localPos = new Vector3(pos.x * verticalBounds * screenAspect,
+                pos.y * verticalBounds * invert,
                 transform.localPosition.z);
 
 
@@ -89,26 +89,6 @@ public class PlaneMovement : MonoBehaviour
                 trick.Evaluate(trickBuffer);
             }
         }
-        /*
-        //check x-value of the first, middle and last elements for barrel rolls
-        float dXFirstHalf = trickBuffer[trickBuffer.Length / 2 + 1].x - trickBuffer[0].x;
-        float dXSecondHalf = trickBuffer[trickBuffer.Length - 1].x - trickBuffer[trickBuffer.Length / 2 + 1].x;
-        float trickMovementThreshold = 1.5f;
-        if ( dXFirstHalf > trickMovementThreshold && dXSecondHalf < -trickMovementThreshold)
-        {
-            //DO A BARREL ROLL TO THE RIGHT
-            Debug.Log("DO A BARREL ROLL TO THE RIGHT!");
-            doABarrelRoll.Invoke(false);
-            return;
-        }
-        if(dXFirstHalf < -trickMovementThreshold && dXSecondHalf > trickMovementThreshold)
-        {
-            //DO A BARREL ROLL TO THE LEFT
-            Debug.Log("DO A BARREL ROLL TO THE LEFT!");
-            doABarrelRoll.Invoke(true);
-            return;
-        }
-        */
     }
     public void DoTrick(Trick trick)
     {

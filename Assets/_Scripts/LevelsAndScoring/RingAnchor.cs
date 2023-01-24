@@ -22,9 +22,4 @@ public class RingAnchor : MonoBehaviour
         transform.localPosition = new Vector3(Mathf.Sign(transform.localPosition.x) * verticalExtents * aspect,
             Mathf.Sign(transform.localPosition.y) * verticalExtents, 0f);
     }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawCube(transform.position, new Vector3(bounds.max.x*2, bounds.max.y*2, 0f));
-    }
 }

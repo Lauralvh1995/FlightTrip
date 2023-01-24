@@ -45,7 +45,7 @@ public class EquationPoint : MonoBehaviour
     float ringRadius = 1f;
     public float RingRadius { get => ringRadius; private set => ringRadius = value; }
     [SerializeField]
-    float ringInnerRadius = 0.4f;
+    float ringInnerRadius;
     public float RingInnerRadius { get => ringInnerRadius; private set => ringInnerRadius = value; }
 
     [Header("Events")]
@@ -75,6 +75,7 @@ public class EquationPoint : MonoBehaviour
         ringAnchors.Add(ringAnchorBR);
         ringAnchors.Add(ringAnchorTL);
         ringAnchors.Add(ringAnchorTR);
+        ringInnerRadius = rings[0].InnerRadius;
     }
     private void OnDisable()
     {
@@ -132,7 +133,7 @@ public class EquationPoint : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(transform.position, 3f);
+        Gizmos.DrawWireSphere(transform.position, 1f);
     }
 
     private void EnterAnswer()

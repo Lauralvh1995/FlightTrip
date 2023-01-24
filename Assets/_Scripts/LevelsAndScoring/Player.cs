@@ -25,6 +25,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     Ring RingTR;
     [SerializeField]
+    Ring selectedRing;
+
+    [SerializeField]
     Equation currentEquation;
     [SerializeField]
     TextMeshProUGUI equationText;
@@ -38,6 +41,8 @@ public class Player : MonoBehaviour
     float distanceToCenterOfRing;
     [SerializeField]
     float margin = 0.5f;
+    [SerializeField]
+    float ringInnerRadius;
 
     public Transform Plane { get => plane; private set => plane = value; }
     public Quadrant Quadrant { get => quadrant; private set => quadrant = value; }
@@ -47,10 +52,13 @@ public class Player : MonoBehaviour
     {
         colorController = GetComponent<PlayerColorController>();
         colorController.SetUpGraphics(playerData.planeColor, playerData.playerColor);
+        ringInnerRadius = rings[0].InnerRadius;
     }
     private void Update()
     {
-        if(plane.localPosition.x < 0 && plane.localPosition.y < 0)
+        Debug.DrawLine(plane.position - plane.forward * margin, plane.position + plane.forward * margin, Color.red);
+        Debug.DrawLine(plane.position - plane.up * margin, plane.position + plane.up * margin, Color.red);
+        if (plane.localPosition.x < 0 && plane.localPosition.y < 0)
         {
             quadrant = Quadrant.BL;
         }
@@ -76,22 +84,43 @@ public class Player : MonoBehaviour
         {
             case Quadrant.BL:
                 distanceToCenterOfRing = Vector3.Distance(correctedPlanePosition, RingBL.transform.localPosition) - margin;
+                selectedRing = RingBL;
                 break;
             case Quadrant.BR:
                 distanceToCenterOfRing = Vector3.Distance(correctedPlanePosition, RingBR.transform.localPosition) - margin;
+                selectedRing = RingBR;
                 break;
             case Quadrant.TL:
                 distanceToCenterOfRing = Vector3.Distance(correctedPlanePosition, RingTL.transform.localPosition) - margin;
+                selectedRing = RingTL;
                 break;
             case Quadrant.TR:
                 distanceToCenterOfRing = Vector3.Distance(correctedPlanePosition, RingTR.transform.localPosition) - margin;
+                selectedRing = RingTR;
                 break;
             default:
                 distanceToCenterOfRing = float.MaxValue;
                 Debug.Log("You're exactly in the middle, that's not good");
                 break;
         }
-        
+        HandleSelectedRing();
+    }
+
+    private void HandleSelectedRing()
+    {
+        foreach(Ring ring in rings)
+        {
+            ring.Unselect();
+        }
+        selectedRing.Select();
+        if(distanceToCenterOfRing < ringInnerRadius)
+        {
+            selectedRing.SelectedInner(true);
+        }
+        else
+        {
+            selectedRing.SelectedInner(false);
+        }
     }
 
     public void SetPlayerUI(List<Ring> rings, Equation currentEquation)

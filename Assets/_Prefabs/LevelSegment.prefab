@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c35a6d5e88295e4d96107eba26f699e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   equation:
     firstNumber: 0
     op: 0
@@ -160,13 +161,14 @@ MonoBehaviour:
   ringBR: {fileID: 9173887582668367178}
   ringTL: {fileID: 1702199560387881378}
   ringTR: {fileID: 1423569377167053295}
-  player: {fileID: 0}
   ringAnchors: []
   ringAnchorBL: {fileID: 9177545619660120431}
   ringAnchorBR: {fileID: 4341707823685765986}
   ringAnchorTL: {fileID: 2680816574995740269}
   ringAnchorTR: {fileID: 4813487162252633298}
   nextPointIndex: 0
+  ringRadius: 1
+  ringInnerRadius: 0
   onRingsSetup:
     m_PersistentCalls:
       m_Calls: []
@@ -179,7 +181,6 @@ MonoBehaviour:
   equationFinished:
     m_PersistentCalls:
       m_Calls: []
-  ringRadius: 1
 --- !u!65 &8330968171885883325
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -298,6 +299,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4801149940073301882}
     m_Modifications:
+    - target: {fileID: 1053254989708909327, guid: deaa9f47b1f9ce44083394245ac4fe2e,
+        type: 3}
+      propertyPath: innerRadius
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 3868912064189706419, guid: deaa9f47b1f9ce44083394245ac4fe2e,
         type: 3}
       propertyPath: m_RootOrder
@@ -391,6 +397,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4801149940073301882}
     m_Modifications:
+    - target: {fileID: 1053254989708909327, guid: deaa9f47b1f9ce44083394245ac4fe2e,
+        type: 3}
+      propertyPath: innerRadius
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 3868912064189706419, guid: deaa9f47b1f9ce44083394245ac4fe2e,
         type: 3}
       propertyPath: m_RootOrder
@@ -484,6 +495,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4801149940073301882}
     m_Modifications:
+    - target: {fileID: 1053254989708909327, guid: deaa9f47b1f9ce44083394245ac4fe2e,
+        type: 3}
+      propertyPath: innerRadius
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 3868912064189706419, guid: deaa9f47b1f9ce44083394245ac4fe2e,
         type: 3}
       propertyPath: m_RootOrder
@@ -577,6 +593,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4801149940073301882}
     m_Modifications:
+    - target: {fileID: 1053254989708909327, guid: deaa9f47b1f9ce44083394245ac4fe2e,
+        type: 3}
+      propertyPath: innerRadius
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 3868912064189706419, guid: deaa9f47b1f9ce44083394245ac4fe2e,
         type: 3}
       propertyPath: m_RootOrder

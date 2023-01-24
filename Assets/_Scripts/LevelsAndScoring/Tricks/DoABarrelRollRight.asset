@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b65487230b507004895f754d305a85f9, type: 3}
   m_Name: DoABarrelRollRight
   m_EditorClassIdentifier: 
-  trickMargin: 0.05
+  trickMargin: 0.01
   animationClip: {fileID: 7400000, guid: fed90899b3516434fb484bb33d778585, type: 2}
   scoreValue: 20
   waypoints:

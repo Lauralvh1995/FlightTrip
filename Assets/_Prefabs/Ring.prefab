@@ -5036,11 +5036,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOnPlayer: 0
-  particles: {fileID: 0}
   player: {fileID: 0}
   answerText: {fileID: 5709341022907050609}
   answer: 0
+  innerRadius: 0.4
   renderer: {fileID: 7768464546735551281}
+  defaultMaterial: {fileID: 2100000, guid: 34106431652a6b24c813f5a9446b5813, type: 2}
+  selectedMaterial: {fileID: 2100000, guid: 7250368c28bb77547a4cbb5cac7f26cf, type: 2}
+  innerRing: {fileID: 5981795416473419317}
+  innerRingUnselected: {fileID: 2100000, guid: f42c12ea6ac2902408f6c454dbc12790, type: 2}
+  innerRingSelected: {fileID: 2100000, guid: 4f9851d34b0d7e94c9d079dbe14e8532, type: 2}
   positionWithinEquationPoint: {x: 0, y: 0, z: 0}
 --- !u!54 &6939663156339061827
 Rigidbody:
@@ -5266,6 +5271,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3827e432aa79b68469c77c16c3a67ee0, type: 3}
+--- !u!1 &5981795416473419317 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3827e432aa79b68469c77c16c3a67ee0,
+    type: 3}
+  m_PrefabInstance: {fileID: 6900344678302352228}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6361417562475291791 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3827e432aa79b68469c77c16c3a67ee0,
