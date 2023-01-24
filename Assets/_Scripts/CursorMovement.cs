@@ -21,8 +21,6 @@ public class CursorMovement : MonoBehaviour
 
     [SerializeField]
     RectTransform rectTransform;
-    [SerializeField]
-    RectTransform parentCanvas;
 
     [SerializeField]
     UnityEvent<bool> OnAllowClick;
@@ -37,7 +35,7 @@ public class CursorMovement : MonoBehaviour
     private void Awake()
     {
         screenAspect = Camera.main.aspect;
-        verticalBounds = parentCanvas.rect.height - rectTransform.rect.height;
+        verticalBounds = Screen.height - rectTransform.rect.height;
         horizontalBounds = verticalBounds * screenAspect;
     }
 

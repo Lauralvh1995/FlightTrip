@@ -7575,12 +7575,12 @@ MonoBehaviour:
   horizontalBounds: 0
   inputBuffer: []
   trickInterval: 25
-  doABarrelRoll:
+  doTrick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 919132148603199676}
         m_TargetAssemblyTypeName: PlaneAnimationController, Assembly-CSharp
-        m_MethodName: BarrelRoll
+        m_MethodName: PlayAnimation
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7590,6 +7590,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  addTrickScore:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1136232601}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: AddTrickScore
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  possibleTricks:
+  - {fileID: 11400000, guid: 6d0fa545732bf8c4183e05ab52a6d32b, type: 2}
+  - {fileID: 11400000, guid: a784056ac2f20804da972cb9809e9b41, type: 2}
 --- !u!114 &657432046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12825,6 +12843,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6900553848399086580, guid: 33e0ee18e5897493a8ab4d5e260f12f4,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6900553848399086580, guid: 33e0ee18e5897493a8ab4d5e260f12f4,
+        type: 3}
       propertyPath: OnInputUpdate.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -13029,7 +13052,6 @@ MonoBehaviour:
   speedModifier: 2
   clickTolerance: 0.01
   rectTransform: {fileID: 780609681}
-  parentCanvas: {fileID: 1670285642}
   OnAllowClick:
     m_PersistentCalls:
       m_Calls:
@@ -14880,6 +14902,7 @@ MonoBehaviour:
     op: 2
     thinkingTime: 3
     scoreEntries: []
+    trickScores: []
   amountOfSectionsPerTrack: 10
   timeBetweenRingsAndTurnIn: 3
   equationPointPrefab: {fileID: 7822995247785648677, guid: d3274b82de20aee4c95ebe42c176d97b,
@@ -37197,6 +37220,66 @@ Transform:
   m_Father: {fileID: 132096648}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1799792329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1799792331}
+  - component: {fileID: 1799792330}
+  m_Layer: 0
+  m_Name: MouseInput
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1799792330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799792329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4efeba04d54f0c644943da554e7de091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCOM: {x: 0, y: 0}
+  OnInputUpdate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 729512099}
+        m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
+        m_MethodName: OnInputGiven
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!4 &1799792331
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799792329}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1802308611
 GameObject:
   m_ObjectHideFlags: 0
@@ -43257,8 +43340,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animation: {fileID: 919132148603199677}
-  barrelRollLeft: {fileID: 7400000, guid: 283fc87d537812b44879074047800c59, type: 2}
-  barrelRollRight: {fileID: 7400000, guid: fed90899b3516434fb484bb33d778585, type: 2}
 --- !u!111 &919132148603199677
 Animation:
   m_ObjectHideFlags: 0

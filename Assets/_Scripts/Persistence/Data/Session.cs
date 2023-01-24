@@ -20,6 +20,8 @@ public class Session
     private int thinkingTime;
     [SerializeField]
     List<ScoreEntry> scoreEntries;
+    [SerializeField]
+    List<TrickScore> trickScores;
 
     public int NumberOfEquations { get => numberOfEquations; set => numberOfEquations = value; }
     public List<int> Bases { get => bases; set => bases = value; }
@@ -56,6 +58,10 @@ public class Session
     {
         scoreEntries.Add(entry);
     }
+    public void AddTrickEntry(TrickScore entry)
+    {
+        trickScores.Add(entry);
+    }
 
     public int GetScore()
     {
@@ -63,6 +69,10 @@ public class Session
         foreach(ScoreEntry entry in scoreEntries)
         {
             score += entry.GetScore();
+        }
+        foreach(TrickScore trickScore in trickScores)
+        {
+            score += trickScore.score;
         }
         return score;
     }

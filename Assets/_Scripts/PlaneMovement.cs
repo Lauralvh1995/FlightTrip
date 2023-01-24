@@ -24,10 +24,16 @@ public class PlaneMovement : MonoBehaviour
     List<Vector2> inputBuffer;
     [SerializeField]
     int trickInterval = 25;
+    [SerializeField]
+    bool allowedToDoTrick = true;
     //inputs are updated on FixedUpdate, which is polled every 0.02 seconds, so 50 inputs in a second
 
     [SerializeField]
-    UnityEvent<bool> doABarrelRoll;
+    UnityEvent<AnimationClip> doTrick;
+    [SerializeField]
+    UnityEvent<string, int> addTrickScore;
+    [SerializeField]
+    List<Trick> possibleTricks;
     //add other event triggers for tricks here
 
     private void Awake()
@@ -35,21 +41,11 @@ public class PlaneMovement : MonoBehaviour
         screenAspect = Camera.main.aspect;
         horizontalBounds = verticalBounds * screenAspect;
         inputBuffer = new List<Vector2>();
-    }
-
-    private void Update()
-    {
-        //for debugging only
-        if (Input.GetKeyDown(KeyCode.Space))
+        foreach(Trick trick in possibleTricks)
         {
-            doABarrelRoll.Invoke(false);
-        }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            doABarrelRoll.Invoke(true);
+            trick.doTrick.AddListener(DoTrick);
         }
     }
-
     public void UpdatePosition(Vector2 pos)
     {
         if (!movementDisabled)
@@ -68,7 +64,7 @@ public class PlaneMovement : MonoBehaviour
                 , transform.localPosition.z);
 
             //check for trick each interval 
-            if(inputBuffer.Count % trickInterval == 0 && inputBuffer.Count > 0)
+            if(inputBuffer.Count > trickInterval)
                 CheckTrick();
         }
     }
@@ -86,21 +82,44 @@ public class PlaneMovement : MonoBehaviour
             inputBuffer.CopyTo(trickBuffer);
         else
             inputBuffer.GetRange(inputBuffer.Count - trickInterval - 1, trickInterval).CopyTo(trickBuffer);
-
+        if (allowedToDoTrick)
+        {
+            foreach (Trick trick in possibleTricks)
+            {
+                trick.Evaluate(trickBuffer);
+            }
+        }
+        /*
         //check x-value of the first, middle and last elements for barrel rolls
-        if(trickBuffer[0].x == -1 && trickBuffer[trickBuffer.Length / 2 + 1].x == 1 && trickBuffer[trickBuffer.Length - 1].x == -1)
+        float dXFirstHalf = trickBuffer[trickBuffer.Length / 2 + 1].x - trickBuffer[0].x;
+        float dXSecondHalf = trickBuffer[trickBuffer.Length - 1].x - trickBuffer[trickBuffer.Length / 2 + 1].x;
+        float trickMovementThreshold = 1.5f;
+        if ( dXFirstHalf > trickMovementThreshold && dXSecondHalf < -trickMovementThreshold)
         {
             //DO A BARREL ROLL TO THE RIGHT
             Debug.Log("DO A BARREL ROLL TO THE RIGHT!");
             doABarrelRoll.Invoke(false);
             return;
         }
-        if(trickBuffer[0].x == 1 && trickBuffer[trickBuffer.Length / 2 + 1].x == -1 && trickBuffer[trickBuffer.Length - 1].x == 1)
+        if(dXFirstHalf < -trickMovementThreshold && dXSecondHalf > trickMovementThreshold)
         {
             //DO A BARREL ROLL TO THE LEFT
             Debug.Log("DO A BARREL ROLL TO THE LEFT!");
             doABarrelRoll.Invoke(true);
             return;
         }
+        */
+    }
+    public void DoTrick(Trick trick)
+    {
+        doTrick.Invoke(trick.GetAnimationClip());
+        addTrickScore.Invoke(trick.name, trick.GetScore());
+        allowedToDoTrick = false;
+        Invoke("EnableTricksAgain", trick.GetAnimationClip().length); //Cooldown is equal to the length of the animation
+    }
+
+    private void EnableTricksAgain()
+    {
+        allowedToDoTrick = true;
     }
 }

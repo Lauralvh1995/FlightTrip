@@ -164,6 +164,12 @@ public class GameManager : MonoBehaviour, IDataPersistence
         session.AddEntry(entry);
         updateScore.Invoke(session.GetScore());
     }
+    public void AddTrickScore(string trickName, int score)
+    {
+        TrickScore newTrickScore = new TrickScore(trickName, score);
+        session.AddTrickEntry(newTrickScore);
+        updateScore.Invoke(session.GetScore());
+    }
     private void EndGame()
     {
         dollyCart.m_Speed = 0;
