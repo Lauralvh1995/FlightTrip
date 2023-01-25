@@ -26,7 +26,7 @@ public class Trick : ScriptableObject
         bool trickEvaluated = false;
         foreach(Vector2 waypoint in waypoints)
         {
-            if(Vector2.Distance(inputs[currentEvaluationIndex], waypoint) < trickMargin)
+            if(Vector2.Distance(inputs[currentEvaluationIndex], waypoint) <= trickMargin)
             {
                 Debug.Log(inputs[currentEvaluationIndex]);
                 trickEvaluated = true;

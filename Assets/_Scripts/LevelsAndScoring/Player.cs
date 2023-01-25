@@ -83,19 +83,15 @@ public class Player : MonoBehaviour
         switch (quadrant)
         {
             case Quadrant.BL:
-                distanceToCenterOfRing = Vector3.Distance(correctedPlanePosition, RingBL.transform.localPosition) - margin;
                 selectedRing = RingBL;
                 break;
             case Quadrant.BR:
-                distanceToCenterOfRing = Vector3.Distance(correctedPlanePosition, RingBR.transform.localPosition) - margin;
                 selectedRing = RingBR;
                 break;
             case Quadrant.TL:
-                distanceToCenterOfRing = Vector3.Distance(correctedPlanePosition, RingTL.transform.localPosition) - margin;
                 selectedRing = RingTL;
                 break;
             case Quadrant.TR:
-                distanceToCenterOfRing = Vector3.Distance(correctedPlanePosition, RingTR.transform.localPosition) - margin;
                 selectedRing = RingTR;
                 break;
             default:
@@ -103,6 +99,8 @@ public class Player : MonoBehaviour
                 Debug.Log("You're exactly in the middle, that's not good");
                 break;
         }
+        if(distanceToCenterOfRing != float.MaxValue)
+            distanceToCenterOfRing = Vector3.Distance(correctedPlanePosition, selectedRing.transform.localPosition) - margin;
         HandleSelectedRing();
     }
 

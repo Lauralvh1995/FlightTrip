@@ -1083,7 +1083,6 @@ MonoBehaviour:
   speedModifier: 2
   clickTolerance: 0.01
   rectTransform: {fileID: 726583099}
-  parentCanvas: {fileID: 1268494657}
   OnAllowClick:
     m_PersistentCalls:
       m_Calls:
